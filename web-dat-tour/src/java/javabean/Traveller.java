@@ -17,7 +17,7 @@ public class Traveller {
 	private  String email;
 	private  String phone;
 	private  String address;
-	private  String country;
+	private  String country; 
 
     /**
      * @return the name

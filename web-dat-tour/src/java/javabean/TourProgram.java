@@ -1,6 +1,9 @@
 package javabean;
 
 //  @ Project : web-dat-tour
+
+import java.util.*;
+
 //  @ File Name : TourProgram.java
 //  @ Date : 06/11/2012
 //  @ Author : An Tran
@@ -22,6 +25,8 @@ public class TourProgram {
 	private  String normailcancel;
 	private  String specialcancel;
 	private  String paymentcondition;
+        private List<Iterable> iterable;
+        private List<Tour> tour;
 
     /**
      * @return the tourname
@@ -175,5 +180,33 @@ public class TourProgram {
      */
     public void setPaymentcondition(String paymentcondition) {
         this.paymentcondition = paymentcondition;
+    }
+
+    /**
+     * @return the iterable
+     */
+    public List<Iterable> getIterable() {
+        return iterable;
+    }
+
+    /**
+     * @param iterable the iterable to set
+     */
+    public void setIterable(List<Iterable> iterable) {
+        this.iterable = iterable;
+    }
+
+    /**
+     * @return the tour
+     */
+    public List<Tour> getTour() {
+        return tour;
+    }
+
+    /**
+     * @param tour the tour to set
+     */
+    public void setTour(List<Tour> tour) {
+        this.tour = tour;
     }
 }
