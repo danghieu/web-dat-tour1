@@ -1,6 +1,6 @@
 package javabean;
 
-import java.util.Date;
+import java.util.*;
 
 //  @ Project : web-dat-tour
 //  @ File Name : Tour.java
@@ -18,6 +18,7 @@ public class Tour {
 	private  int maxpeople;
 	private  long cost;
 	private  long childrencost;
+        private List<TourContact> tourcontact;
 
     /**
      * @return the startdate
@@ -87,5 +88,19 @@ public class Tour {
      */
     public void setChildrencost(long childrencost) {
         this.childrencost = childrencost;
+    }
+
+    /**
+     * @return the tourcontact
+     */
+    public List<TourContact> getTourcontact() {
+        return tourcontact;
+    }
+
+    /**
+     * @param tourcontact the tourcontact to set
+     */
+    public void setTourcontact(List<TourContact> tourcontact) {
+        this.tourcontact = tourcontact;
     }
 }
