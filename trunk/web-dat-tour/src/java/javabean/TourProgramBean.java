@@ -4,7 +4,7 @@ package javabean;
 
 import java.util.*;
 
-//  @ File Name : TourProgram.java
+//  @ File Name : TourProgramBean.java
 //  @ Date : 06/11/2012
 //  @ Author : An Tran
 //
@@ -13,7 +13,7 @@ import java.util.*;
 
 
 
-public class TourProgram {
+public class TourProgramBean {
 	private  String tourname;
 	private  String description;
 	private  String destination;
@@ -26,7 +26,7 @@ public class TourProgram {
 	private  String specialcancel;
 	private  String paymentcondition;
         private List<Iterable> iterable;
-        private List<Tour> tour;
+        private List<TourBean> tour;
 
     /**
      * @return the tourname
@@ -199,14 +199,14 @@ public class TourProgram {
     /**
      * @return the tour
      */
-    public List<Tour> getTour() {
+    public List<TourBean> getTour() {
         return tour;
     }
 
     /**
      * @param tour the tour to set
      */
-    public void setTour(List<Tour> tour) {
+    public void setTour(List<TourBean> tour) {
         this.tour = tour;
     }
 }

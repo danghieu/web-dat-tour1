@@ -1,7 +1,7 @@
 package javabean;
 
 //  @ Project : web-dat-tour
-//  @ File Name : ContactPerson.java
+//  @ File Name : TravellerBean.java
 //  @ Date : 06/11/2012
 //  @ Author : An Tran
 //
@@ -10,14 +10,14 @@ package javabean;
 
 
 
-public class ContactPerson {
+public class TravellerBean {
 	private  String name;
 	private  String sex;
+	private  int age;
 	private  String email;
-	private  String password;
 	private  String phone;
 	private  String address;
-	private  String company;
+	private  String country; 
 
     /**
      * @return the name
@@ -48,6 +48,20 @@ public class ContactPerson {
     }
 
     /**
+     * @return the age
+     */
+    public int getAge() {
+        return age;
+    }
+
+    /**
+     * @param age the age to set
+     */
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    /**
      * @return the email
      */
     public String getEmail() {
@@ -59,20 +73,6 @@ public class ContactPerson {
      */
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    /**
-     * @return the password
-     */
-    public String getPassword() {
-        return password;
-    }
-
-    /**
-     * @param password the password to set
-     */
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     /**
@@ -104,16 +104,16 @@ public class ContactPerson {
     }
 
     /**
-     * @return the company
+     * @return the country
      */
-    public String getCompany() {
-        return company;
+    public String getCountry() {
+        return country;
     }
 
     /**
-     * @param company the company to set
+     * @param country the country to set
      */
-    public void setCompany(String company) {
-        this.company = company;
+    public void setCountry(String country) {
+        this.country = country;
     }
 }

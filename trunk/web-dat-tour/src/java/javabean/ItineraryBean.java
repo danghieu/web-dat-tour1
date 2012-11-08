@@ -1,7 +1,7 @@
 package javabean;
 
 //  @ Project : web-dat-tour
-//  @ File Name : Itinerary.java
+//  @ File Name : ItineraryBean.java
 //  @ Date : 06/11/2012
 //  @ Author : An Tran
 //
@@ -10,7 +10,7 @@ package javabean;
 
 
 
-public class Itinerary {
+public class ItineraryBean {
 	private  int day;
 	private  String detail;
 	private  String image;

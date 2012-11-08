@@ -3,7 +3,7 @@ package javabean;
 import java.util.*;
 
 //  @ Project : web-dat-tour
-//  @ File Name : Tour.java
+//  @ File Name : TourBean.java
 //  @ Date : 06/11/2012
 //  @ Author : An Tran
 //
@@ -12,13 +12,13 @@ import java.util.*;
 
 
 
-public class Tour {
+public class TourBean {
 	private  Date startdate;
 	private  double time;
 	private  int maxpeople;
 	private  long cost;
 	private  long childrencost;
-        private List<TourContact> tourcontact;
+        private List<TourContactBean> tourcontact;
 
     /**
      * @return the startdate
@@ -93,14 +93,14 @@ public class Tour {
     /**
      * @return the tourcontact
      */
-    public List<TourContact> getTourcontact() {
+    public List<TourContactBean> getTourcontact() {
         return tourcontact;
     }
 
     /**
      * @param tourcontact the tourcontact to set
      */
-    public void setTourcontact(List<TourContact> tourcontact) {
+    public void setTourcontact(List<TourContactBean> tourcontact) {
         this.tourcontact = tourcontact;
     }
 }

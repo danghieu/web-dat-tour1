@@ -3,7 +3,7 @@ package javabean;
 import java.util.Date;
 
 //  @ Project : web-dat-tour
-//  @ File Name : TourContact.java
+//  @ File Name : TourContactBean.java
 //  @ Date : 06/11/2012
 //  @ Author : An Tran
 //
@@ -12,10 +12,10 @@ import java.util.Date;
 
 
 
-public class TourContact {
+public class TourContactBean {
 	private  Date assigndate;
-        private Traveller traveller;
-        private ContactPerson contactperson;
+        private TravellerBean traveller;
+        private ContactPersonBean contactperson;
 
     /**
      * @return the assigndate
@@ -34,28 +34,28 @@ public class TourContact {
     /**
      * @return the traveller
      */
-    public Traveller getTraveller() {
+    public TravellerBean getTraveller() {
         return traveller;
     }
 
     /**
      * @param traveller the traveller to set
      */
-    public void setTraveller(Traveller traveller) {
+    public void setTraveller(TravellerBean traveller) {
         this.traveller = traveller;
     }
 
     /**
      * @return the contactperson
      */
-    public ContactPerson getContactperson() {
+    public ContactPersonBean getContactperson() {
         return contactperson;
     }
 
     /**
      * @param contactperson the contactperson to set
      */
-    public void setContactperson(ContactPerson contactperson) {
+    public void setContactperson(ContactPersonBean contactperson) {
         this.contactperson = contactperson;
     }
 }
