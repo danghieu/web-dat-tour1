@@ -11,7 +11,9 @@ package javabean;
 
 
 public class TravellerBean {
+        private String travellerid;
 	private  String name;
+        private String idcard;
 	private  String sex;
 	private  int age;
 	private  String email;
@@ -115,5 +117,33 @@ public class TravellerBean {
      */
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    /**
+     * @return the travellerid
+     */
+    public String getTravellerid() {
+        return travellerid;
+    }
+
+    /**
+     * @param travellerid the travellerid to set
+     */
+    public void setTravellerid(String travellerid) {
+        this.travellerid = travellerid;
+    }
+
+    /**
+     * @return the idcard
+     */
+    public String getIdcard() {
+        return idcard;
+    }
+
+    /**
+     * @param idcard the idcard to set
+     */
+    public void setIdcard(String idcard) {
+        this.idcard = idcard;
     }
 }

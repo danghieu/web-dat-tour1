@@ -10,10 +10,8 @@ public class DBConnectionService {
         Class.forName("com.mysql.jdbc.Driver");
         Connection con = DriverManager.getConnection(url, "root", "ndk1991");
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");*/
-        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");  
-        String connectionUrl = "jdbc:sqlserver://localhost:1433;" +
-   "databaseName=UserLogin;user=sa;password=ndk1991;";
-Connection con = DriverManager.getConnection(connectionUrl);
+        Class.forName("net.sourceforge.jtds.jdbc.Driver");
+        Connection con = DriverManager.getConnection("jdbc:jtds:sqlserver://localhost:1433/web-dat-tour","sa","ndk1991");
         return con;
     }
 }

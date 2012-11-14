@@ -13,6 +13,7 @@ import java.util.*;
 
 
 public class TourBean {
+        private String tourid;
 	private  Date startdate;
 	private  double time;
 	private  int maxpeople;
@@ -102,5 +103,19 @@ public class TourBean {
      */
     public void setTourcontact(List<TourContactBean> tourcontact) {
         this.tourcontact = tourcontact;
+    }
+
+    /**
+     * @return the tourid
+     */
+    public String getTourid() {
+        return tourid;
+    }
+
+    /**
+     * @param tourid the tourid to set
+     */
+    public void setTourid(String tourid) {
+        this.tourid = tourid;
     }
 }

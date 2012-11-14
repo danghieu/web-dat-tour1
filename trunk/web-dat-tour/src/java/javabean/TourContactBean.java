@@ -13,6 +13,7 @@ import java.util.Date;
 
 
 public class TourContactBean {
+        private String tourcontactid;
 	private  Date assigndate;
         private TravellerBean traveller;
         private ContactPersonBean contactperson;
@@ -57,5 +58,19 @@ public class TourContactBean {
      */
     public void setContactperson(ContactPersonBean contactperson) {
         this.contactperson = contactperson;
+    }
+
+    /**
+     * @return the tourcontactid
+     */
+    public String getTourcontactid() {
+        return tourcontactid;
+    }
+
+    /**
+     * @param tourcontactid the tourcontactid to set
+     */
+    public void setTourcontactid(String tourcontactid) {
+        this.tourcontactid = tourcontactid;
     }
 }

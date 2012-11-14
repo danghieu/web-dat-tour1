@@ -14,6 +14,7 @@ import java.util.*;
 
 
 public class TourProgramBean {
+        private String tourprogramid;
 	private  String tourname;
 	private  String description;
 	private  String destination;
@@ -208,5 +209,19 @@ public class TourProgramBean {
      */
     public void setTour(List<TourBean> tour) {
         this.tour = tour;
+    }
+
+    /**
+     * @return the tourprogramid
+     */
+    public String getTourprogramid() {
+        return tourprogramid;
+    }
+
+    /**
+     * @param tourprogramid the tourprogramid to set
+     */
+    public void setTourprogramid(String tourprogramid) {
+        this.tourprogramid = tourprogramid;
     }
 }
