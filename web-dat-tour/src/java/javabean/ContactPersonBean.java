@@ -1,6 +1,9 @@
 package javabean;
 
 //  @ Project : web-dat-tour
+
+import java.util.Date;
+
 //  @ File Name : ContactPersonBean.java
 //  @ Date : 06/11/2012
 //  @ Author : An Tran
@@ -11,7 +14,9 @@ package javabean;
 
 
 public class ContactPersonBean {
-	private  String name;
+        private String  username;
+	private  String fullname;
+        private Date birthday;
 	private  String sex;
 	private  String email;
 	private  String password;
@@ -19,19 +24,6 @@ public class ContactPersonBean {
 	private  String address;
 	private  String company;
 
-    /**
-     * @return the name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * @param name the name to set
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
 
     /**
      * @return the sex
@@ -115,5 +107,47 @@ public class ContactPersonBean {
      */
     public void setCompany(String company) {
         this.company = company;
+    }
+
+    /**
+     * @return the username
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     * @param username the username to set
+     */
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    /**
+     * @return the fullname
+     */
+    public String getFullname() {
+        return fullname;
+    }
+
+    /**
+     * @param fullname the fullname to set
+     */
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    /**
+     * @return the birthday
+     */
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    /**
+     * @param birthday the birthday to set
+     */
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 }
