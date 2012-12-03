@@ -13,13 +13,47 @@ import java.util.*;
 
 
 public class TourBean {
-        private String tourid;
+        private String TourId;
+        private TourProgramBean TourProgram;
 	private  Date startdate;
-	private  double time;
+        private String startplace;
+        private String endplace;
 	private  int maxpeople;
-	private  long cost;
-	private  long childrencost;
-        private List<TourContactBean> tourcontact;
+	private  long basiccharge;
+	private  long surcharge;
+        private long airportcharge;
+        private long singleroomsurcharge;
+        private long visasurcharge;
+        private long kidcharge;
+        private long infantcharge;
+
+    /**
+     * @return the TourId
+     */
+    public String getTourId() {
+        return TourId;
+    }
+
+    /**
+     * @param TourId the TourId to set
+     */
+    public void setTourId(String TourId) {
+        this.TourId = TourId;
+    }
+
+    /**
+     * @return the TourProgram
+     */
+    public TourProgramBean getTourProgram() {
+        return TourProgram;
+    }
+
+    /**
+     * @param TourProgram the TourProgram to set
+     */
+    public void setTourProgram(TourProgramBean TourProgram) {
+        this.TourProgram = TourProgram;
+    }
 
     /**
      * @return the startdate
@@ -36,17 +70,31 @@ public class TourBean {
     }
 
     /**
-     * @return the time
+     * @return the startplace
      */
-    public double getTime() {
-        return time;
+    public String getStartplace() {
+        return startplace;
     }
 
     /**
-     * @param time the time to set
+     * @param startplace the startplace to set
      */
-    public void setTime(double time) {
-        this.time = time;
+    public void setStartplace(String startplace) {
+        this.startplace = startplace;
+    }
+
+    /**
+     * @return the endplace
+     */
+    public String getEndplace() {
+        return endplace;
+    }
+
+    /**
+     * @param endplace the endplace to set
+     */
+    public void setEndplace(String endplace) {
+        this.endplace = endplace;
     }
 
     /**
@@ -64,58 +112,103 @@ public class TourBean {
     }
 
     /**
-     * @return the cost
+     * @return the basiccharge
      */
-    public long getCost() {
-        return cost;
+    public long getBasiccharge() {
+        return basiccharge;
     }
 
     /**
-     * @param cost the cost to set
+     * @param basiccharge the basiccharge to set
      */
-    public void setCost(long cost) {
-        this.cost = cost;
+    public void setBasiccharge(long basiccharge) {
+        this.basiccharge = basiccharge;
     }
 
     /**
-     * @return the childrencost
+     * @return the surcharge
      */
-    public long getChildrencost() {
-        return childrencost;
+    public long getSurcharge() {
+        return surcharge;
     }
 
     /**
-     * @param childrencost the childrencost to set
+     * @param surcharge the surcharge to set
      */
-    public void setChildrencost(long childrencost) {
-        this.childrencost = childrencost;
+    public void setSurcharge(long surcharge) {
+        this.surcharge = surcharge;
     }
 
     /**
-     * @return the tourcontact
+     * @return the airportcharge
      */
-    public List<TourContactBean> getTourcontact() {
-        return tourcontact;
+    public long getAirportcharge() {
+        return airportcharge;
     }
 
     /**
-     * @param tourcontact the tourcontact to set
+     * @param airportcharge the airportcharge to set
      */
-    public void setTourcontact(List<TourContactBean> tourcontact) {
-        this.tourcontact = tourcontact;
+    public void setAirportcharge(long airportcharge) {
+        this.airportcharge = airportcharge;
     }
 
     /**
-     * @return the tourid
+     * @return the singleroomsurcharge
      */
-    public String getTourid() {
-        return tourid;
+    public long getSingleroomsurcharge() {
+        return singleroomsurcharge;
     }
 
     /**
-     * @param tourid the tourid to set
+     * @param singleroomsurcharge the singleroomsurcharge to set
      */
-    public void setTourid(String tourid) {
-        this.tourid = tourid;
+    public void setSingleroomsurcharge(long singleroomsurcharge) {
+        this.singleroomsurcharge = singleroomsurcharge;
     }
+
+    /**
+     * @return the visasurcharge
+     */
+    public long getVisasurcharge() {
+        return visasurcharge;
+    }
+
+    /**
+     * @param visasurcharge the visasurcharge to set
+     */
+    public void setVisasurcharge(long visasurcharge) {
+        this.visasurcharge = visasurcharge;
+    }
+
+    /**
+     * @return the kidcharge
+     */
+    public long getKidcharge() {
+        return kidcharge;
+    }
+
+    /**
+     * @param kidcharge the kidcharge to set
+     */
+    public void setKidcharge(long kidcharge) {
+        this.kidcharge = kidcharge;
+    }
+
+    /**
+     * @return the infantcharge
+     */
+    public long getInfantcharge() {
+        return infantcharge;
+    }
+
+    /**
+     * @param infantcharge the infantcharge to set
+     */
+    public void setInfantcharge(long infantcharge) {
+        this.infantcharge = infantcharge;
+    }
+
+
+    
 }

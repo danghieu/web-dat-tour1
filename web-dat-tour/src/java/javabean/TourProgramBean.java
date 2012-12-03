@@ -14,214 +14,125 @@ import java.util.*;
 
 
 public class TourProgramBean {
-        private String tourprogramid;
-	private  String tourname;
-	private  String description;
-	private  String destination;
-	private  String hotel;
-	private  String transportation;
-	private  String include;
-	private  String exclude;
-	private  String notice;
-	private  String normailcancel;
-	private  String specialcancel;
-	private  String paymentcondition;
-        private List<Iterable> iterable;
-        private List<TourBean> tour;
+        private  String TourProgramId;
+	private  String TourProgramName;
+	private  String Notice;
+	private  String Transportation;
+	private  String Include;
+	private  String Exclude;
+	private  String PaymentCondition;
+        private ArrayList<ItineraryBean> Itineraries;
 
     /**
-     * @return the tourname
+     * @return the TourProgramId
      */
-    public String getTourname() {
-        return tourname;
+    public String getTourProgramId() {
+        return TourProgramId;
     }
 
     /**
-     * @param tourname the tourname to set
+     * @param TourProgramId the TourProgramId to set
      */
-    public void setTourname(String tourname) {
-        this.tourname = tourname;
+    public void setTourProgramId(String TourProgramId) {
+        this.TourProgramId = TourProgramId;
     }
 
     /**
-     * @return the description
+     * @return the TourProgramName
      */
-    public String getDescription() {
-        return description;
+    public String getTourProgramName() {
+        return TourProgramName;
     }
 
     /**
-     * @param description the description to set
+     * @param TourProgramName the TourProgramName to set
      */
-    public void setDescription(String description) {
-        this.description = description;
+    public void setTourProgramName(String TourProgramName) {
+        this.TourProgramName = TourProgramName;
     }
 
     /**
-     * @return the destination
-     */
-    public String getDestination() {
-        return destination;
-    }
-
-    /**
-     * @param destination the destination to set
-     */
-    public void setDestination(String destination) {
-        this.destination = destination;
-    }
-
-    /**
-     * @return the hotel
-     */
-    public String getHotel() {
-        return hotel;
-    }
-
-    /**
-     * @param hotel the hotel to set
-     */
-    public void setHotel(String hotel) {
-        this.hotel = hotel;
-    }
-
-    /**
-     * @return the transportation
-     */
-    public String getTransportation() {
-        return transportation;
-    }
-
-    /**
-     * @param transportation the transportation to set
-     */
-    public void setTransportation(String transportation) {
-        this.transportation = transportation;
-    }
-
-    /**
-     * @return the include
-     */
-    public String getInclude() {
-        return include;
-    }
-
-    /**
-     * @param include the include to set
-     */
-    public void setInclude(String include) {
-        this.include = include;
-    }
-
-    /**
-     * @return the exclude
-     */
-    public String getExclude() {
-        return exclude;
-    }
-
-    /**
-     * @param exclude the exclude to set
-     */
-    public void setExclude(String exclude) {
-        this.exclude = exclude;
-    }
-
-    /**
-     * @return the notice
+     * @return the Notice
      */
     public String getNotice() {
-        return notice;
+        return Notice;
     }
 
     /**
-     * @param notice the notice to set
+     * @param Notice the Notice to set
      */
-    public void setNotice(String notice) {
-        this.notice = notice;
+    public void setNotice(String Notice) {
+        this.Notice = Notice;
     }
 
     /**
-     * @return the normailcancel
+     * @return the Transportation
      */
-    public String getNormailcancel() {
-        return normailcancel;
+    public String getTransportation() {
+        return Transportation;
     }
 
     /**
-     * @param normailcancel the normailcancel to set
+     * @param Transportation the Transportation to set
      */
-    public void setNormailcancel(String normailcancel) {
-        this.normailcancel = normailcancel;
+    public void setTransportation(String Transportation) {
+        this.Transportation = Transportation;
     }
 
     /**
-     * @return the specialcancel
+     * @return the Include
      */
-    public String getSpecialcancel() {
-        return specialcancel;
+    public String getInclude() {
+        return Include;
     }
 
     /**
-     * @param specialcancel the specialcancel to set
+     * @param Include the Include to set
      */
-    public void setSpecialcancel(String specialcancel) {
-        this.specialcancel = specialcancel;
+    public void setInclude(String Include) {
+        this.Include = Include;
     }
 
     /**
-     * @return the paymentcondition
+     * @return the Exclude
      */
-    public String getPaymentcondition() {
-        return paymentcondition;
+    public String getExclude() {
+        return Exclude;
     }
 
     /**
-     * @param paymentcondition the paymentcondition to set
+     * @param Exclude the Exclude to set
      */
-    public void setPaymentcondition(String paymentcondition) {
-        this.paymentcondition = paymentcondition;
+    public void setExclude(String Exclude) {
+        this.Exclude = Exclude;
     }
 
     /**
-     * @return the iterable
+     * @return the PaymentCondition
      */
-    public List<Iterable> getIterable() {
-        return iterable;
+    public String getPaymentCondition() {
+        return PaymentCondition;
     }
 
     /**
-     * @param iterable the iterable to set
+     * @param PaymentCondition the PaymentCondition to set
      */
-    public void setIterable(List<Iterable> iterable) {
-        this.iterable = iterable;
+    public void setPaymentCondition(String PaymentCondition) {
+        this.PaymentCondition = PaymentCondition;
     }
 
     /**
-     * @return the tour
+     * @return the Itineraries
      */
-    public List<TourBean> getTour() {
-        return tour;
+    public List<ItineraryBean> getItineraries() {
+        return Itineraries;
     }
 
     /**
-     * @param tour the tour to set
+     * @param Itineraries the Itineraries to set
      */
-    public void setTour(List<TourBean> tour) {
-        this.tour = tour;
+    public void setItineraries(ArrayList<ItineraryBean> Itineraries) {
+        this.Itineraries = Itineraries;
     }
 
-    /**
-     * @return the tourprogramid
-     */
-    public String getTourprogramid() {
-        return tourprogramid;
-    }
-
-    /**
-     * @param tourprogramid the tourprogramid to set
-     */
-    public void setTourprogramid(String tourprogramid) {
-        this.tourprogramid = tourprogramid;
-    }
 }

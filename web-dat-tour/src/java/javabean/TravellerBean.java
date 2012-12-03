@@ -1,6 +1,9 @@
 package javabean;
 
 //  @ Project : web-dat-tour
+
+import java.util.Date;
+
 //  @ File Name : TravellerBean.java
 //  @ Date : 06/11/2012
 //  @ Author : An Tran
@@ -11,139 +14,110 @@ package javabean;
 
 
 public class TravellerBean {
-        private String travellerid;
-	private  String name;
-        private String idcard;
-	private  String sex;
-	private  int age;
-	private  String email;
-	private  String phone;
-	private  String address;
-	private  String country; 
+        private String TravellerId;
+	private String Name;
+	private Date Birthday;
+	private String Gender;
+	private String Address;
+        private boolean SingleRoom;
+        private String ClientType;
 
     /**
-     * @return the name
+     * @return the TravellerId
+     */
+    public String getTravellerId() {
+        return TravellerId;
+    }
+
+    /**
+     * @param TravellerId the TravellerId to set
+     */
+    public void setTravellerId(String TravellerId) {
+        this.TravellerId = TravellerId;
+    }
+
+    /**
+     * @return the Name
      */
     public String getName() {
-        return name;
+        return Name;
     }
 
     /**
-     * @param name the name to set
+     * @param Name the Name to set
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String Name) {
+        this.Name = Name;
     }
 
     /**
-     * @return the sex
+     * @return the Birthday
      */
-    public String getSex() {
-        return sex;
+    public Date getBirthday() {
+        return Birthday;
     }
 
     /**
-     * @param sex the sex to set
+     * @param Birthday the Birthday to set
      */
-    public void setSex(String sex) {
-        this.sex = sex;
+    public void setBirthday(Date Birthday) {
+        this.Birthday = Birthday;
     }
 
     /**
-     * @return the age
+     * @return the Gender
      */
-    public int getAge() {
-        return age;
+    public String getGender() {
+        return Gender;
     }
 
     /**
-     * @param age the age to set
+     * @param Gender the Gender to set
      */
-    public void setAge(int age) {
-        this.age = age;
+    public void setGender(String Gender) {
+        this.Gender = Gender;
     }
 
     /**
-     * @return the email
-     */
-    public String getEmail() {
-        return email;
-    }
-
-    /**
-     * @param email the email to set
-     */
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    /**
-     * @return the phone
-     */
-    public String getPhone() {
-        return phone;
-    }
-
-    /**
-     * @param phone the phone to set
-     */
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    /**
-     * @return the address
+     * @return the Address
      */
     public String getAddress() {
-        return address;
+        return Address;
     }
 
     /**
-     * @param address the address to set
+     * @param Address the Address to set
      */
-    public void setAddress(String address) {
-        this.address = address;
+    public void setAddress(String Address) {
+        this.Address = Address;
     }
 
     /**
-     * @return the country
+     * @return the SingleRoom
      */
-    public String getCountry() {
-        return country;
+    public boolean isSingleRoom() {
+        return SingleRoom;
     }
 
     /**
-     * @param country the country to set
+     * @param SingleRoom the SingleRoom to set
      */
-    public void setCountry(String country) {
-        this.country = country;
+    public void setSingleRoom(boolean SingleRoom) {
+        this.SingleRoom = SingleRoom;
     }
 
     /**
-     * @return the travellerid
+     * @return the ClientType
      */
-    public String getTravellerid() {
-        return travellerid;
+    public String getClientType() {
+        return ClientType;
     }
 
     /**
-     * @param travellerid the travellerid to set
+     * @param ClientType the ClientType to set
      */
-    public void setTravellerid(String travellerid) {
-        this.travellerid = travellerid;
+    public void setClientType(String ClientType) {
+        this.ClientType = ClientType;
     }
 
-    /**
-     * @return the idcard
-     */
-    public String getIdcard() {
-        return idcard;
-    }
-
-    /**
-     * @param idcard the idcard to set
-     */
-    public void setIdcard(String idcard) {
-        this.idcard = idcard;
-    }
-}
+ }

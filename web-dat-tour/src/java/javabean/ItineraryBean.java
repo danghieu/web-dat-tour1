@@ -11,49 +11,66 @@ package javabean;
 
 
 public class ItineraryBean {
-	private  int day;
-	private  String detail;
-	private  String image;
+        private String TourProgramId;
+	private  int Day;
+	private  String Detail;
+	private  String Image;
 
     /**
-     * @return the day
+     * @return the TourProgramId
+     */
+    public String getTourProgramId() {
+        return TourProgramId;
+    }
+
+    /**
+     * @param TourProgramId the TourProgramId to set
+     */
+    public void setTourProgramId(String TourProgramId) {
+        this.TourProgramId = TourProgramId;
+    }
+
+    /**
+     * @return the Day
      */
     public int getDay() {
-        return day;
+        return Day;
     }
 
     /**
-     * @param day the day to set
+     * @param Day the Day to set
      */
-    public void setDay(int day) {
-        this.day = day;
+    public void setDay(int Day) {
+        this.Day = Day;
     }
 
     /**
-     * @return the detail
+     * @return the Detail
      */
     public String getDetail() {
-        return detail;
+        return Detail;
     }
 
     /**
-     * @param detail the detail to set
+     * @param Detail the Detail to set
      */
-    public void setDetail(String detail) {
-        this.detail = detail;
+    public void setDetail(String Detail) {
+        this.Detail = Detail;
     }
 
     /**
-     * @return the image
+     * @return the Image
      */
     public String getImage() {
-        return image;
+        return Image;
     }
 
     /**
-     * @param image the image to set
+     * @param Image the Image to set
      */
-    public void setImage(String image) {
-        this.image = image;
+    public void setImage(String Image) {
+        this.Image = Image;
     }
+
+ 
 }
