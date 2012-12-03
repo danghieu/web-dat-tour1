@@ -30,11 +30,43 @@ public class TourProgramMapper extends DBMapper{
             tourprogram.setTransportation(rs.getString("Transportation"));
             tourprogram.setNotice(rs.getString("Notice"));
             tourprogram.setInclude(rs.getString("Include"));
-            tourprogram.setItineraries(null);
-                    
+            ItineraryMapper itiMapper=new ItineraryMapper();
+            tourprogram.setItineraries(itiMapper.listSpecifiedtinerary(tourprogramid));
         }
         
         return tourprogram;
     }
     
+    public boolean createNewTourProgram(TourProgramBean tourprogram)throws Exception
+    {
+        Statement st = con.createStatement();
+        String sqlStr;
+        TourProgramBean temp = isExist(tourprogram.getTourProgramId(),tourprogram.getTourProgramName());
+        if (temp !=null) {
+            return false;
+        }
+        sqlStr = "insert into [tourprogram](tourprogramid,tourprogramname, notice, transportation, include, exclude, paymentconditions)"
+                + " values('"+tourprogram.getTourProgramId()+"','"+tourprogram.getTourProgramName()+"','"
+                +tourprogram.getNotice()+"','"+tourprogram.getTransportation()
+                +"','"+tourprogram.getInclude()+"','"+tourprogram.getExclude()+"','"+tourprogram.getPaymentCondition()+"')";
+        st.executeUpdate(sqlStr.toString());
+        return true;
+    }
+    
+    public boolean updateSpecifiedTourProgram(TourProgramBean tourprogram)throws Exception
+    {
+        Statement st = con.createStatement();
+        String sqlStr;
+        TourProgramBean temp = isExist(tourprogram.getTourProgramId(),tourprogram.getTourProgramName());
+        if (temp !=null) {
+            return false;
+        }
+         sqlStr = "UPDATE [tourprogram] set `tourprogramname`='"+tourprogram.getTourProgramName()+
+                "', `notice`='"+tourprogram.getNotice() + "', `transportation`='"+tourprogram.getTransportation() +
+                 "', `include`='"+tourprogram.getInclude() +"', `exclude`='"+tourprogram.getExclude() +
+                 "', `paymentconditions`='"+tourprogram.getPaymentCondition() +" WHERE `tourprogramid`='"+
+                tourprogram.getTourProgramId()+"'";
+        st.executeUpdate(sqlStr.toString());
+        return true;
+    }
 }
