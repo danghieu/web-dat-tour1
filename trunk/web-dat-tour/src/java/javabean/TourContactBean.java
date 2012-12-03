@@ -13,64 +13,80 @@ import java.util.Date;
 
 
 public class TourContactBean {
-        private String tourcontactid;
-	private  Date assigndate;
-        private TravellerBean traveller;
-        private ContactPersonBean contactperson;
+        private String TourContactId;
+	private Date AssignDate;
+        private TravellerBean Traveller;
+        private UserBean UserName;
+        private TourBean TourId;
 
     /**
-     * @return the assigndate
+     * @return the TourContactId
      */
-    public Date getAssigndate() {
-        return assigndate;
+    public String getTourContactId() {
+        return TourContactId;
     }
 
     /**
-     * @param assigndate the assigndate to set
+     * @param TourContactId the TourContactId to set
      */
-    public void setAssigndate(Date assigndate) {
-        this.assigndate = assigndate;
+    public void setTourContactId(String TourContactId) {
+        this.TourContactId = TourContactId;
     }
 
     /**
-     * @return the traveller
+     * @return the AssignDate
+     */
+    public Date getAssignDate() {
+        return AssignDate;
+    }
+
+    /**
+     * @param AssignDate the AssignDate to set
+     */
+    public void setAssignDate(Date AssignDate) {
+        this.AssignDate = AssignDate;
+    }
+
+    /**
+     * @return the Traveller
      */
     public TravellerBean getTraveller() {
-        return traveller;
+        return Traveller;
     }
 
     /**
-     * @param traveller the traveller to set
+     * @param Traveller the Traveller to set
      */
-    public void setTraveller(TravellerBean traveller) {
-        this.traveller = traveller;
+    public void setTraveller(TravellerBean Traveller) {
+        this.Traveller = Traveller;
     }
 
     /**
-     * @return the contactperson
+     * @return the UserName
      */
-    public ContactPersonBean getContactperson() {
-        return contactperson;
+    public UserBean getUserName() {
+        return UserName;
     }
 
     /**
-     * @param contactperson the contactperson to set
+     * @param UserName the UserName to set
      */
-    public void setContactperson(ContactPersonBean contactperson) {
-        this.contactperson = contactperson;
+    public void setUserName(UserBean UserName) {
+        this.UserName = UserName;
     }
 
     /**
-     * @return the tourcontactid
+     * @return the TourId
      */
-    public String getTourcontactid() {
-        return tourcontactid;
+    public TourBean getTourId() {
+        return TourId;
     }
 
     /**
-     * @param tourcontactid the tourcontactid to set
+     * @param TourId the TourId to set
      */
-    public void setTourcontactid(String tourcontactid) {
-        this.tourcontactid = tourcontactid;
+    public void setTourId(TourBean TourId) {
+        this.TourId = TourId;
     }
+
 }
