@@ -4,7 +4,6 @@
  */
 package dbmapper;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import javabean.ItineraryBean;
@@ -14,7 +13,7 @@ import javabean.ItineraryBean;
  * @author AT
  */
 public class ItineraryMapper extends DBMapper{
-    public ItineraryBean isExist(String tourprogramid, int day) throws SQLException
+    public ItineraryBean isExist(String tourprogramid, int day) throws Exception
     {
         ItineraryBean itinerary=null;
         Statement st = con.createStatement();
@@ -32,7 +31,26 @@ public class ItineraryMapper extends DBMapper{
         return itinerary;
     }
     
-    public boolean createNewItinerary(ItineraryBean itinerary) throws SQLException
+    public ItineraryBean isExist(ItineraryBean iti) throws Exception
+    {
+        ItineraryBean itinerary=null;
+        Statement st = con.createStatement();
+        String sqlStr="SELECT * FROM `Itinerary` WHERE tourprogramid='"+iti.getTourProgramId()+"' AND day='"
+                +iti.getDay()+ "'";
+        ResultSet rs;
+        rs = st.executeQuery(sqlStr.toString());
+        if (rs != null && rs.next()) {
+            itinerary = new ItineraryBean();
+            itinerary.setTourProgramId(rs.getString("tourprogramid"));
+            itinerary.setDay(rs.getInt("day"));
+            itinerary.setDetail(rs.getString("detail"));
+            itinerary.setImage(rs.getString("image"));
+        }        
+        return itinerary;
+    }
+    
+    
+    public boolean createNewItinerary(ItineraryBean itinerary) throws Exception
     {
         Statement st = con.createStatement();
         String sqlStr;
@@ -47,7 +65,7 @@ public class ItineraryMapper extends DBMapper{
         return true;
     }
     
-    public boolean updateSpecifiedItinerary(ItineraryBean iti) throws SQLException
+    public boolean updateSpecifiedItinerary(ItineraryBean iti) throws Exception
     {
         Statement st = con.createStatement();
         String sqlStr;
@@ -62,7 +80,7 @@ public class ItineraryMapper extends DBMapper{
         return true;
     }
     
-    public boolean deleteSpecifiedItinerary(String tourprogramid) throws SQLException
+    public boolean deleteSpecifiedItinerary(String tourprogramid) throws Exception
     {
         Statement st = con.createStatement();
         String sqlStr;
@@ -75,7 +93,7 @@ public class ItineraryMapper extends DBMapper{
         return true;
     }
     
-    public ArrayList<ItineraryBean> listAllItineraries() throws SQLException
+    public ArrayList<ItineraryBean> listAllItineraries() throws Exception
     {
         ArrayList listOfItineraries = new ArrayList<ItineraryBean>();
         ItineraryBean iti=null;
@@ -93,7 +111,7 @@ public class ItineraryMapper extends DBMapper{
         return listOfItineraries;
     }
     
-    public ArrayList<ItineraryBean> listSpecifiedtinerary(String tourprogramid) throws SQLException
+    public ArrayList<ItineraryBean> listSpecifiedtinerary(String tourprogramid) throws Exception
     {
         ArrayList listOfItineraries = new ArrayList<ItineraryBean>();
         ItineraryBean iti=null;
