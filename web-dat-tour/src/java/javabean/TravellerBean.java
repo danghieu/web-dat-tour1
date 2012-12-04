@@ -17,7 +17,7 @@ public class TravellerBean {
         private String TravellerId;
 	private String Name;
 	private Date Birthday;
-	private String Gender;
+	private boolean Gender;
 	private String Address;
         private boolean SingleRoom;
         private String ClientType;
@@ -67,14 +67,14 @@ public class TravellerBean {
     /**
      * @return the Gender
      */
-    public String getGender() {
+    public boolean getGender() {
         return Gender;
     }
 
     /**
      * @param Gender the Gender to set
      */
-    public void setGender(String Gender) {
+    public void setGender(boolean Gender) {
         this.Gender = Gender;
     }
 
@@ -95,7 +95,7 @@ public class TravellerBean {
     /**
      * @return the SingleRoom
      */
-    public boolean isSingleRoom() {
+    public boolean getSingleRoom() {
         return SingleRoom;
     }
 

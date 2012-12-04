@@ -1,7 +1,6 @@
 package dbmapper;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import javabean.UserBean;
@@ -38,11 +37,36 @@ public class UserMapper extends DBMapper{
         return user;
     }
     
+    public UserBean isExist(String username) throws Exception {
+        UserBean user = null;
+        Statement st = con.createStatement();
+        String sqlStr="SELECT * FROM `UserProfile` WHERE username='"+username+"'";
+        ResultSet rs;
+        rs = st.executeQuery(sqlStr.toString());
+        if (rs != null && rs.next()) {
+            user = new UserBean();
+            user.setUserName(rs.getString("username"));
+            user.setPassword(rs.getString("password"));
+            user.setFirstName(rs.getString("firstname"));
+            user.setLastName(rs.getString("lastname"));
+            user.setBirthday(rs.getDate("birthday"));
+            user.setGender(rs.getBoolean("gender"));
+            user.setEmail(rs.getString("email"));
+            user.setPhone(rs.getString("phone"));
+            user.setAddress(rs.getString("address"));
+            user.setCompany(rs.getString("company"));
+            user.setDateCreation(rs.getDate("datecreation"));
+            user.setRoleId(rs.getString("roleid"));
+        }
+        
+        return user;
+    }
+    
     public boolean createNewUser(UserBean user) throws Exception {
         Statement st = con.createStatement();
         String sqlStr;
-        UserBean user2 = isExist(user.getUserName(),user.getPassword());
-        if (user2 !=null) {
+        UserBean usertemp = isExist(user.getUserName(),user.getPassword());
+        if (usertemp !=null) {
             return false;
         }
         sqlStr = "insert into [userprofile](username,password,firstname,lastname"
@@ -56,16 +80,23 @@ public class UserMapper extends DBMapper{
         return true;
     }
     
-    public boolean deleteSpecifiedUser(String username) {
-        
+    public boolean deleteSpecifiedUser(UserBean user)throws Exception {
+        Statement st = con.createStatement();
+        String sqlStr;
+        UserBean usertemp = isExist(user.getUserName(),user.getPassword());
+        if (usertemp ==null) {
+            return false;
+        }
+        sqlStr = "DELETE FROM [userprofile] WHERE `username`='"+user.getUserName()+"'";
+        st.executeUpdate(sqlStr.toString());
         return true;
     }
     
-    public boolean changeUserPassword(UserBean user,String strnewpassword) throws SQLException, Exception {
+    public boolean changeUserPassword(UserBean user,String strnewpassword) throws Exception {
         Statement st = con.createStatement();
         String sqlStr;
-        UserBean user2 = isExist(user.getUserName(),user.getPassword());
-        if (user2 ==null) {
+        UserBean usertemp = isExist(user.getUserName(),user.getPassword());
+        if (usertemp ==null) {
             return false;
         }
         sqlStr = "UPDATE [userprofile] set `password`='"+strnewpassword+"' WHERE `username`='"+user.getUserName()+"'";
@@ -73,33 +104,44 @@ public class UserMapper extends DBMapper{
         return true;
     }
     
-    public boolean updateSpecifiedUser(UserBean user) throws SQLException, Exception{
-        
+    public boolean updateSpecifiedUser(UserBean user) throws Exception{
+        Statement st = con.createStatement();
+        String sqlStr;
+        UserBean usertemp = isExist(user.getUserName(),user.getPassword());
+        if (usertemp ==null) {
+            return false;
+        }
+        sqlStr = "UPDATE [userprofile] set `firstname`='"+user.getFirstName()+
+                "', `lastname`='"+user.getLastName() + "', `birthday`='"+user.getBirthday() +
+                "', `gender`='"+user.isGender() + "', `phone`='"+user.getPhone() +
+                "', `address`='"+user.getAddress() + "', `company`='"+user.getCompany() +
+                "', `datecreation`='"+user.getDateCreation() +"' WHERE `username`='"+user.getUserName()+"'";
+        st.executeUpdate(sqlStr.toString());
         return true;
     }
     
-    public ArrayList<UserBean> searchUser(UserBean user) throws SQLException {
+    public ArrayList<UserBean> searchUser(UserBean user) throws Exception {
         ArrayList listOfUsers = new ArrayList<UserBean>();
-        UserBean user2 = null;
+        UserBean usertemp = null;
         Statement st = con.createStatement();
         String sqlStr="SELECT * FROM `UserProfile` WHERE username='"+user.getUserName()+"'";//+"' OR firstname='"+user.getFirstName()+"' OR lastname='"
                 //+user.getLastName()+"' OR birthday='"+user.getBirthday()+"';";
         ResultSet rs;
         rs = st.executeQuery(sqlStr.toString());
         if (rs != null && rs.next()) {
-            user2 = new UserBean();
-            user2.setUserName(rs.getString("username"));
-            user2.setPassword(rs.getString("password"));
-            user2.setFirstName(rs.getString("firstname"));
-            user2.setLastName(rs.getString("lastname"));
-            user2.setBirthday(rs.getDate("birthday"));
-            user2.setGender(rs.getBoolean("gender"));
-            user2.setEmail(rs.getString("email"));
-            user2.setPhone(rs.getString("phone"));
-            user2.setAddress(rs.getString("address"));
-            user2.setCompany(rs.getString("company"));
-            user2.setDateCreation(rs.getDate("datecreation"));
-            user2.setRoleId(rs.getString("roleid"));
+            usertemp = new UserBean();
+            usertemp.setUserName(rs.getString("username"));
+            usertemp.setPassword(rs.getString("password"));
+            usertemp.setFirstName(rs.getString("firstname"));
+            usertemp.setLastName(rs.getString("lastname"));
+            usertemp.setBirthday(rs.getDate("birthday"));
+            usertemp.setGender(rs.getBoolean("gender"));
+            usertemp.setEmail(rs.getString("email"));
+            usertemp.setPhone(rs.getString("phone"));
+            usertemp.setAddress(rs.getString("address"));
+            usertemp.setCompany(rs.getString("company"));
+            usertemp.setDateCreation(rs.getDate("datecreation"));
+            usertemp.setRoleId(rs.getString("roleid"));
             listOfUsers.add(user);
         }
         
