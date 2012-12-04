@@ -1,6 +1,6 @@
 <%-- 
     Document   : index
-    Created on : Oct 23, 2012, 4:21:48 PM
+    Created on : Oct 24, 2012, 2:18:16 PM
     Author     : Karl
 --%>
 
@@ -9,9 +9,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Main Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <center><b><a style="color:red;size: 15px" href="./jsp/Register.jsp">Đăng ký</a>
+            <a style="color:red;size: 15px" href="./jsp/Login.jsp">Đăng nhập</a></b></center>
     </body>
 </html>

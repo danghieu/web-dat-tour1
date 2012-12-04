@@ -5,10 +5,8 @@
 package dbmapper;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import javabean.ItineraryBean;
 import javabean.TourProgramBean;
 /**
  *
@@ -68,5 +66,40 @@ public class TourProgramMapper extends DBMapper{
                 tourprogram.getTourProgramId()+"'";
         st.executeUpdate(sqlStr.toString());
         return true;
+    }
+    public boolean deleteSpecifiedTourProgram(String tourprogramid)throws Exception
+    {
+        Statement st = con.createStatement();
+        String sqlStr;
+        TourProgramBean temp = isExist(tourprogramid,"");
+        if (temp !=null) {
+            return false;
+        }
+        sqlStr = "DELETE FROM [tourprogram] WHERE `tourprogramid`='"+tourprogramid+"'";
+        st.executeUpdate(sqlStr.toString());
+        return true;
+    }
+    
+    public ArrayList<TourProgramBean> listAllTourProgram() throws Exception {
+        ArrayList listOfTourPrograms = new ArrayList<TourProgramBean>();
+        TourProgramBean tourprogram = null;
+        Statement st = con.createStatement();
+        String sqlStr="SELECT * FROM `TourProgram`";
+        ResultSet rs;
+        rs = st.executeQuery(sqlStr.toString());
+        if (rs != null && rs.next()) {
+            tourprogram = new TourProgramBean();
+            tourprogram.setTourProgramId(rs.getString("tourprogramid"));
+            tourprogram.setTourProgramName(rs.getString("tourprogramname"));
+            tourprogram.setNotice(rs.getString("notice"));
+            tourprogram.setInclude(rs.getString("include"));
+            tourprogram.setExclude(rs.getString("exclude"));
+            tourprogram.setPaymentCondition(rs.getString("paymentconditions"));            
+            ItineraryMapper itiMapper=new ItineraryMapper();
+            tourprogram.setItineraries(itiMapper.listSpecifiedtinerary(tourprogram.getTourProgramId()));
+            listOfTourPrograms.add(tourprogram);
+        }
+        
+        return listOfTourPrograms;
     }
 }

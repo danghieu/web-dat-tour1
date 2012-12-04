@@ -37,7 +37,7 @@ public class UserBO {
     public boolean deleteSpecifiedUser(UserBean user)throws Exception
     {
         UserMapper userMapper=new UserMapper();
-        boolean isDeleted=userMapper.deleteSpecifiedUser(user.getUserName());
+        boolean isDeleted=userMapper.deleteSpecifiedUser(user);
         return isDeleted;
     }
     

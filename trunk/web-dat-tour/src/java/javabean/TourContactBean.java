@@ -17,7 +17,7 @@ public class TourContactBean {
 	private Date AssignDate;
         private TravellerBean Traveller;
         private UserBean UserName;
-        private TourBean TourId;
+        private TourBean Tour;
 
     /**
      * @return the TourContactId
@@ -78,15 +78,15 @@ public class TourContactBean {
     /**
      * @return the TourId
      */
-    public TourBean getTourId() {
-        return TourId;
+    public TourBean getTour() {
+        return Tour;
     }
 
     /**
      * @param TourId the TourId to set
      */
-    public void setTourId(TourBean TourId) {
-        this.TourId = TourId;
+    public void setTour(TourBean Tour) {
+        this.Tour = Tour;
     }
 
 }
