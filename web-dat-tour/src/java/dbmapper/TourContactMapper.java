@@ -17,7 +17,7 @@ public class TourContactMapper extends DBMapper{
     public TourContactBean isExist(String tourcontactid) throws Exception {
         TourContactBean tourcontact = null;
         Statement st = con.createStatement();
-        String sqlStr="SELECT * FROM `tourcontact` WHERE `tourcontactid`='"+tourcontactid+"'";
+        String sqlStr="SELECT * FROM tourcontact WHERE tourcontactid='"+tourcontactid+"'";
         ResultSet rs;
         rs = st.executeQuery(sqlStr.toString());
         if (rs != null && rs.next()) {
@@ -62,7 +62,7 @@ public class TourContactMapper extends DBMapper{
         if (tourcontacttemp !=null) {
             return false;
         }
-        sqlStr = "DELETE FROM `tourcontact` WHERE `tourcontactid`='"+tourcontact.getTourContactId()+"'";
+        sqlStr = "DELETE FROM tourcontact WHERE tourcontactid='"+tourcontact.getTourContactId()+"'";
         st.executeUpdate(sqlStr.toString());
         return true;
     }
@@ -75,9 +75,9 @@ public class TourContactMapper extends DBMapper{
         if (tourcontacttemp !=null) {
             return false;
         }
-        sqlStr = "UPDATE [tourcontact] set `assigndate`='"+tourcontact.getAssignDate()+"', `tourid`='"
-                +tourcontact.getTour().getTourId()+"', `travellerid`='"+tourcontact.getTraveller().getTravellerId()
-                +"', `username`='"+tourcontact.getUserName().getUserName()+"'  WHERE `tourcontactid`='"
+        sqlStr = "UPDATE [tourcontact] set assigndate='"+tourcontact.getAssignDate()+"', tourid='"
+                +tourcontact.getTour().getTourId()+"', travellerid='"+tourcontact.getTraveller().getTravellerId()
+                +"', username='"+tourcontact.getUserName().getUserName()+"'  WHERE tourcontactid='"
                 +tourcontact.getTourContactId()+"'";
         st.executeUpdate(sqlStr.toString());
         return true;
@@ -88,7 +88,7 @@ public class TourContactMapper extends DBMapper{
         ArrayList listOfTourContact = new ArrayList<TourContactBean>();
         TourContactBean tourcontact = null;
         Statement st = con.createStatement();
-        String sqlStr="SELECT * FROM `tourcontact`";
+        String sqlStr="SELECT * FROM tourcontact";
         ResultSet rs;
         rs = st.executeQuery(sqlStr.toString());
         if (rs != null && rs.next()) {
@@ -115,7 +115,7 @@ public class TourContactMapper extends DBMapper{
         ArrayList listOfTourContact = new ArrayList<TourContactBean>();
         TourContactBean tourcontact = null;
         Statement st = con.createStatement();
-        String sqlStr="SELECT * FROM `tourcontact` WHERE `tourcontactid`="+tourcontactid+"'";
+        String sqlStr="SELECT * FROM tourcontact WHERE tourcontactid="+tourcontactid+"'";
         ResultSet rs;
         rs = st.executeQuery(sqlStr.toString());
         if (rs != null && rs.next()) {

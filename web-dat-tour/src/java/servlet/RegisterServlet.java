@@ -7,6 +7,8 @@ package servlet;
 import bo.UserBO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,7 +17,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -43,13 +44,19 @@ public class RegisterServlet extends HttpServlet {
                 user.setPassword(request.getParameter("password"));
                 user.setFirstName(request.getParameter("firstname"));
                 user.setLastName(request.getParameter("lastname"));
-                user.setBirthday(new Date(request.getParameter("date")+"/"+request.getParameter("month")+"/"+request.getParameter("year")));
+                user.setBirthday(new Date(request.getParameter("year")+"/"+request.getParameter("month")+"/"+request.getParameter("date")));
                 user.setGender(request.getParameter("gender").equals("Nam")?true:false);
                 user.setPhone(request.getParameter("phone"));
                 user.setEmail(request.getParameter("email"));
                 user.setAddress(request.getParameter("address"));
                 user.setCompany(request.getParameter("email"));
                 user.setAddress(request.getParameter("address"));
+                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+	   //get current date time with Date()
+                Date date = new Date();
+	   //System.out.println(dateFormat.format(date));
+                user.setDateCreation(date);
+                user.setRoleId("2");
                 UserBO userBO = new UserBO();
                 boolean isCreated=false;
                 isCreated=userBO.createNewUser(user);

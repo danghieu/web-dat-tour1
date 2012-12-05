@@ -7,6 +7,7 @@ package dbmapper;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javabean.ItineraryBean;
 import javabean.TourProgramBean;
 /**
  *
@@ -17,7 +18,7 @@ public class TourProgramMapper extends DBMapper{
     public TourProgramBean isExist(String tourprogramid, String tourprogramname) throws Exception {
         TourProgramBean tourprogram = null;
         Statement st = con.createStatement();
-        String sqlStr="SELECT * FROM `TourProgram` WHERE TourProgramId='"+tourprogramid+"' OR TourProgramName='"
+        String sqlStr="SELECT * FROM [TourProgram] WHERE TourProgramId='"+tourprogramid+"' OR TourProgramName='"
                 +tourprogramname+ "'";
         ResultSet rs;
         rs = st.executeQuery(sqlStr.toString());
@@ -59,10 +60,10 @@ public class TourProgramMapper extends DBMapper{
         if (temp !=null) {
             return false;
         }
-         sqlStr = "UPDATE [tourprogram] set `tourprogramname`='"+tourprogram.getTourProgramName()+
-                "', `notice`='"+tourprogram.getNotice() + "', `transportation`='"+tourprogram.getTransportation() +
-                 "', `include`='"+tourprogram.getInclude() +"', `exclude`='"+tourprogram.getExclude() +
-                 "', `paymentconditions`='"+tourprogram.getPaymentCondition() +" WHERE `tourprogramid`='"+
+         sqlStr = "UPDATE [tourprogram] set tourprogramname='"+tourprogram.getTourProgramName()+
+                "', notice='"+tourprogram.getNotice() + "', transportation='"+tourprogram.getTransportation() +
+                 "', include='"+tourprogram.getInclude() +"', exclude='"+tourprogram.getExclude() +
+                 "', paymentconditions='"+tourprogram.getPaymentCondition() +" WHERE tourprogramid='"+
                 tourprogram.getTourProgramId()+"'";
         st.executeUpdate(sqlStr.toString());
         return true;
@@ -75,7 +76,7 @@ public class TourProgramMapper extends DBMapper{
         if (temp !=null) {
             return false;
         }
-        sqlStr = "DELETE FROM [tourprogram] WHERE `tourprogramid`='"+tourprogramid+"'";
+        sqlStr = "DELETE FROM [tourprogram] WHERE tourprogramid='"+tourprogramid+"'";
         st.executeUpdate(sqlStr.toString());
         return true;
     }
@@ -84,7 +85,7 @@ public class TourProgramMapper extends DBMapper{
         ArrayList listOfTourPrograms = new ArrayList<TourProgramBean>();
         TourProgramBean tourprogram = null;
         Statement st = con.createStatement();
-        String sqlStr="SELECT * FROM `TourProgram`";
+        String sqlStr="SELECT * FROM [TourProgram]";
         ResultSet rs;
         rs = st.executeQuery(sqlStr.toString());
         if (rs != null && rs.next()) {
@@ -96,7 +97,10 @@ public class TourProgramMapper extends DBMapper{
             tourprogram.setExclude(rs.getString("exclude"));
             tourprogram.setPaymentCondition(rs.getString("paymentconditions"));            
             ItineraryMapper itiMapper=new ItineraryMapper();
-            tourprogram.setItineraries(itiMapper.listSpecifiedtinerary(tourprogram.getTourProgramId()));
+            ArrayList<ItineraryBean> listOfIti=itiMapper.listSpecifiedtinerary(rs.getString("tourprogramid"));
+            tourprogram.setItineraries(listOfIti);
+            //tourprogram.setItineraries(null);
+            
             listOfTourPrograms.add(tourprogram);
         }
         

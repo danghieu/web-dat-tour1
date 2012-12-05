@@ -17,7 +17,7 @@ public class ItineraryMapper extends DBMapper{
     {
         ItineraryBean itinerary=null;
         Statement st = con.createStatement();
-        String sqlStr="SELECT * FROM `Itinerary` WHERE tourprogramid='"+tourprogramid+"' AND day='"
+        String sqlStr="SELECT * FROM [Itinerary] WHERE tourprogramid='"+tourprogramid+"' AND day='"
                 +day+ "'";
         ResultSet rs;
         rs = st.executeQuery(sqlStr.toString());
@@ -35,7 +35,7 @@ public class ItineraryMapper extends DBMapper{
     {
         ItineraryBean itinerary=null;
         Statement st = con.createStatement();
-        String sqlStr="SELECT * FROM `Itinerary` WHERE tourprogramid='"+iti.getTourProgramId()+"' AND day='"
+        String sqlStr="SELECT * FROM [Itinerary] WHERE tourprogramid='"+iti.getTourProgramId()+"' AND day='"
                 +iti.getDay()+ "'";
         ResultSet rs;
         rs = st.executeQuery(sqlStr.toString());
@@ -73,9 +73,9 @@ public class ItineraryMapper extends DBMapper{
         if (iti2 ==null) {
             return false;
         }
-        sqlStr = "UPDATE [itinerary] set `detail`='"+iti.getDetail()+
-                "', `image`='"+iti.getImage() + " WHERE `tourprogramid`='"+
-                iti.getTourProgramId()+"' AND `day`='"+iti.getDay()+"'";
+        sqlStr = "UPDATE [itinerary] set detail='"+iti.getDetail()+
+                "', image='"+iti.getImage() + " WHERE tourprogramid='"+
+                iti.getTourProgramId()+"' AND day='"+iti.getDay()+"'";
         st.executeUpdate(sqlStr.toString());
         return true;
     }
@@ -88,7 +88,7 @@ public class ItineraryMapper extends DBMapper{
         if (iti2 ==null) {
             return false;
         }
-        sqlStr = "DELETE FROM [itinerary] WHERE `tourprogramid`='"+tourprogramid+"'";
+        sqlStr = "DELETE FROM [itinerary] WHERE tourprogramid='"+tourprogramid+"'";
         st.executeUpdate(sqlStr.toString());
         return true;
     }
@@ -98,12 +98,12 @@ public class ItineraryMapper extends DBMapper{
         ArrayList listOfItineraries = new ArrayList<ItineraryBean>();
         ItineraryBean iti=null;
         Statement st = con.createStatement();
-        String sqlStr="SELECT * FROM `itinerary`";
+        String sqlStr="SELECT * FROM [Itinerary]";
         ResultSet rs;
         rs = st.executeQuery(sqlStr.toString());
         if (rs != null && rs.next()) {
             iti = new ItineraryBean();
-            iti.setTourProgramId(rs.getString("tourprogram"));
+            iti.setTourProgramId(rs.getString("tourprogramid"));
             iti.setDay(rs.getInt("day"));
             iti.setDetail(rs.getString("detail"));
             iti.setImage(rs.getString("image"));
@@ -116,7 +116,7 @@ public class ItineraryMapper extends DBMapper{
         ArrayList listOfItineraries = new ArrayList<ItineraryBean>();
         ItineraryBean iti=null;
         Statement st = con.createStatement();
-        String sqlStr="SELECT * FROM `itinerary` WHERE `tourprogramid`='"+tourprogramid+"'";
+        String sqlStr="SELECT * FROM [Itinerary] WHERE tourprogramid='"+tourprogramid+"'";
         ResultSet rs;
         rs = st.executeQuery(sqlStr.toString());
         if (rs != null && rs.next()) {

@@ -1,0 +1,75 @@
+body 
+{
+    background-image:url('Banner.jpg');
+    padding : 0;
+   /* margin-top: 0px;*/
+    margin:0 auto;
+}
+
+#page-container
+{
+    margin:0 auto;
+    color: black;
+    height: 10px;
+    width: 900px;
+}
+
+#header
+{
+border: 2px solid black;   
+}
+    
+#content
+{
+    background:white;
+    height:auto;
+    margin : 0;
+    padding-left: 5px;
+    }
+    
+#footer
+{
+    border-top:2px solid black;
+    clear:both;
+    background:orange;
+    height:66px;
+    }
+#leftmenu
+{
+    background: #cccccc;
+    margin:0;
+    padding-left:5px;
+    width:220px;
+    float:left;
+    }
+#maincontent
+{
+    margin:0;
+    padding-left:5px;
+    background: white;
+    width:670px;
+    height: 800px;
+    float:left;
+    }
+#rightmenu
+{
+    
+    width:200px;
+    margin:0;
+    padding-left:5px;
+    float:left;
+    background: coral;
+    }
+    
+    /*
+    #top-right
+    {
+       float:right;
+        }*/
+ div.background
+  {
+  width:500px;
+  height:250px;
+  background:url(Banner.jpg) repeat;
+  border:2px solid black;
+  }

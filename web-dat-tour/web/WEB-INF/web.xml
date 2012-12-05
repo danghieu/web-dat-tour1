@@ -4,11 +4,82 @@
         <filter-name>UTF8Filter</filter-name>
         <filter-class>utilities.UTF8Filter</filter-class>
     </filter>
-
     <filter-mapping>
         <filter-name>UTF8Filter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>servlet.LoginServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FailedHandleServlet</servlet-name>
+        <servlet-class>servlet.FailedHandleServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>servlet.RegisterServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChangePasswordServlet</servlet-name>
+        <servlet-class>servlet.ChangePasswordServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TourDetailServlet</servlet-name>
+        <servlet-class>servlet.TourDetailServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateTourProgramServlet</servlet-name>
+        <servlet-class>servlet.CreateTourProgramServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditTourProgramServlet</servlet-name>
+        <servlet-class>servlet.EditTourProgramServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DispatchEditTourProgramServlet</servlet-name>
+        <servlet-class>servlet.DispatchEditTourProgramServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteTourProgramServlet</servlet-name>
+        <servlet-class>servlet.DeleteTourProgramServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FailedHandleServlet</servlet-name>
+        <url-pattern>/FailedHandleServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/RegisterServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangePasswordServlet</servlet-name>
+        <url-pattern>/ChangePasswordServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TourDetailServlet</servlet-name>
+        <url-pattern>/TourDetailServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateTourProgramServlet</servlet-name>
+        <url-pattern>/CreateTourProgramServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditTourProgramServlet</servlet-name>
+        <url-pattern>/EditTourProgramServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DispatchEditTourProgramServlet</servlet-name>
+        <url-pattern>/DispatchEditTourProgramServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteTourProgramServlet</servlet-name>
+        <url-pattern>/DeleteTourProgramServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
