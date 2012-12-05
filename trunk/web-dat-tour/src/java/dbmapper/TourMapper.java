@@ -21,7 +21,7 @@ public class TourMapper extends DBMapper{
     {
         TourBean tour= null;
         Statement st = con.createStatement();
-        String sqlStr="SELECT * FROM `Tour`,`TourProgram` WHERE TourId='"+tourid+"'";
+        String sqlStr="SELECT * FROM Tour WHERE TourId='"+tourid+"'";
         ResultSet rs;
         rs = st.executeQuery(sqlStr.toString());
         if (rs != null && rs.next()) {
@@ -75,13 +75,13 @@ public class TourMapper extends DBMapper{
         if (tourBean !=null || tourprogramBean!=null) {
             return false;
         }
-        sqlStr = "UPDATE [tour] set `startdate`='"+tour.getStartdate()+
-                "', `startplace`='"+tour.getStartplace() + "', `endplace`='"+tour.getEndplace() +
-                 "', `maxpeople`='"+tour.getMaxpeople() +"', `basiccharge`='"+tour.getBasiccharge() +
-                "', `surcharge`='"+tour.getSurcharge() + "', `airportcharge`='"+tour.getAirportcharge() +
-                 "', `singleroomsurcharge`='"+tour.getSingleroomsurcharge() +"', `visasurcharge`='"+tour.getVisasurcharge() +
-                 "', `kidcharge`='"+tour.getKidcharge() +"', `infantcharge`='"+tour.getInfantcharge() +" WHERE `tourid`='"+
-                tour.getTourId()+"' and `tourprogramid`='"+tour.getTourProgram().getTourProgramId()+"'";
+        sqlStr = "UPDATE [tour] set startdate='"+tour.getStartdate()+
+                "', startplace='"+tour.getStartplace() + "', endplace='"+tour.getEndplace() +
+                 "', maxpeople='"+tour.getMaxpeople() +"', basiccharge='"+tour.getBasiccharge() +
+                "', surcharge='"+tour.getSurcharge() + "', airportcharge='"+tour.getAirportcharge() +
+                 "', singleroomsurcharge='"+tour.getSingleroomsurcharge() +"', visasurcharge='"+tour.getVisasurcharge() +
+                 "', kidcharge='"+tour.getKidcharge() +"', infantcharge='"+tour.getInfantcharge() +" WHERE tourid='"+
+                tour.getTourId()+"' and tourprogramid='"+tour.getTourProgram().getTourProgramId()+"'";
         st.executeUpdate(sqlStr.toString());
         return true;
     }
@@ -94,7 +94,7 @@ public class TourMapper extends DBMapper{
         if (temp !=null) {
             return false;
         }
-        sqlStr = "DELETE FROM [tour] WHERE `tourpid`='"+tourid+"'";
+        sqlStr = "DELETE FROM [tour] WHERE tourid='"+tourid+"'";
         st.executeUpdate(sqlStr.toString());
         return true;
     }
@@ -103,7 +103,7 @@ public class TourMapper extends DBMapper{
         ArrayList listOfTours = new ArrayList<TourBean>();
         TourBean tour = null;
         Statement st = con.createStatement();
-        String sqlStr="SELECT * FROM `Tour`";
+        String sqlStr="SELECT * FROM Tour";
         ResultSet rs;
         rs = st.executeQuery(sqlStr.toString());
         if (rs != null && rs.next()) {
@@ -131,9 +131,9 @@ public class TourMapper extends DBMapper{
         ArrayList listOfTours = new ArrayList<TourBean>();
         TourBean tour = null;
         Statement st = con.createStatement();
-        String sqlStr="SELECT * FROM `Tour`, `TourProgram` WHERE `tour`.`tourprogramid`=`tourprogram`.`tourprogramid`"
-                + " and `tourprogramname`='%"+toursearch.getTourName()+"%' and `startdate`="+toursearch.getStartDate()+"' and `startplace`='"
-                + toursearch.getStartPlace()+"' and `basiccharge`>="+toursearch.getChargeFrom()+" and `basiccharge`<="+toursearch.getChargeTo();
+        String sqlStr="SELECT * FROM Tour WHERE "
+                + " tourprogramname='%"+toursearch.getTourName()+"%' and startdate="+toursearch.getStartDate()+"' and startplace='"
+                + toursearch.getStartPlace()+"' and basiccharge>="+toursearch.getChargeFrom()+" and basiccharge<="+toursearch.getChargeTo();
         ResultSet rs;
         rs = st.executeQuery(sqlStr.toString());
         if (rs != null && rs.next()) {

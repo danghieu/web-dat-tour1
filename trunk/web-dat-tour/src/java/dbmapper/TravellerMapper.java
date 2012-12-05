@@ -17,7 +17,7 @@ public class TravellerMapper extends DBMapper{
     public TravellerBean isExist(String travellerid) throws Exception {
         TravellerBean traveller = null;
         Statement st = con.createStatement();
-        String sqlStr="SELECT * FROM `Traveller` WHERE TravellerId='"+travellerid+"'";
+        String sqlStr="SELECT * FROM Traveller WHERE TravellerId='"+travellerid+"'";
         ResultSet rs;
         rs = st.executeQuery(sqlStr.toString());
         if (rs != null && rs.next()) {
@@ -56,10 +56,10 @@ public class TravellerMapper extends DBMapper{
         if (travellertemp !=null) {
             return false;
         }
-        sqlStr = "UPDATE [traveller] set `name`='"+traveller.getName()+
-                "', `birthday`='"+traveller.getBirthday() + "', `gender`='"+traveller.getGender() +
-                 "', `address`='"+traveller.getAddress() +"', `singlroom`='"+traveller.getSingleRoom() +
-                 "', `clienttype`='"+traveller.getClientType() +" WHERE `travellerid`='"+
+        sqlStr = "UPDATE [traveller] set name='"+traveller.getName()+
+                "', birthday='"+traveller.getBirthday() + "', gender='"+traveller.getGender() +
+                 "', address='"+traveller.getAddress() +"', singlroom='"+traveller.getSingleRoom() +
+                 "', clienttype='"+traveller.getClientType() +" WHERE travellerid='"+
                 traveller.getTravellerId()+"'";
         st.executeUpdate(sqlStr.toString());
         return true;
@@ -72,7 +72,7 @@ public class TravellerMapper extends DBMapper{
         if (travellertemp !=null) {
             return false;
         }
-        sqlStr = "DELETE FROM [traveller] WHERE `travellerid`='"+
+        sqlStr = "DELETE FROM [traveller] WHERE travellerid='"+
                 traveller.getTravellerId()+"'";
         st.executeUpdate(sqlStr.toString());
         return true;
@@ -83,7 +83,7 @@ public class TravellerMapper extends DBMapper{
         ArrayList listOfTravellers = new ArrayList<TravellerBean>();
         TravellerBean traveller = null;
         Statement st = con.createStatement();
-        String sqlStr="SELECT * FROM `Traveller`";
+        String sqlStr="SELECT * FROM Traveller";
         ResultSet rs;
         rs = st.executeQuery(sqlStr.toString());
         if (rs != null && rs.next()) {
@@ -106,7 +106,7 @@ public class TravellerMapper extends DBMapper{
         ArrayList listOfTravellers = new ArrayList<TravellerBean>();
         TravellerBean traveller = null;
         Statement st = con.createStatement();
-        String sqlStr="SELECT * FROM `Traveller` WHERE `name`='"+Name+"'";
+        String sqlStr="SELECT * FROM Traveller WHERE name='"+Name+"'";
         ResultSet rs;
         rs = st.executeQuery(sqlStr.toString());
         if (rs != null && rs.next()) {

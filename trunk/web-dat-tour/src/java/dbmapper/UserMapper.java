@@ -2,7 +2,10 @@ package dbmapper;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javabean.UserBean;
 
 
@@ -14,7 +17,7 @@ public class UserMapper extends DBMapper{
     public UserBean isExist(String username, String password) throws Exception {
         UserBean user = null;
         Statement st = con.createStatement();
-        String sqlStr="SELECT * FROM `UserProfile` WHERE username='"+username+"' AND password='"
+        String sqlStr="SELECT * FROM [UserProfile] WHERE username='"+username+"' AND password='"
                 +password+ "'";
         ResultSet rs;
         rs = st.executeQuery(sqlStr.toString());
@@ -40,7 +43,7 @@ public class UserMapper extends DBMapper{
     public UserBean isExist(String username) throws Exception {
         UserBean user = null;
         Statement st = con.createStatement();
-        String sqlStr="SELECT * FROM `UserProfile` WHERE username='"+username+"'";
+        String sqlStr="SELECT * FROM [UserProfile] WHERE username='"+username+"'";
         ResultSet rs;
         rs = st.executeQuery(sqlStr.toString());
         if (rs != null && rs.next()) {
@@ -69,13 +72,19 @@ public class UserMapper extends DBMapper{
         if (usertemp !=null) {
             return false;
         }
+        DateFormat formatter ; 
+        Date date =new Date();  
+         formatter = new SimpleDateFormat("dd-MM-yyyy");  
+         String birthday = formatter.format(user.getBirthday());
+         String creationdate = formatter.format(date);
+ 
         sqlStr = "insert into [userprofile](username,password,firstname,lastname"
                 + ",birthday,gender,email,phone,address,company,datecreation,roleid)"
                 + " values('"+user.getUserName()+"','"+user.getPassword()+"','"
-                +user.getFirstName()+"','"+user.getLastName()+"','"+user.getBirthday()
+                +user.getFirstName()+"','"+user.getLastName()+"','"+birthday
                 +"','"+(user.isGender()?"1":"0")+"','"+user.getEmail()+"','"
                 +user.getPhone()+"','"+user.getAddress()+"','"+user.getCompany()
-                +"','"+user.getDateCreation()+"','"+user.getRoleId()+"')";
+                +"','"+creationdate+"','"+"2"+"')";
         st.executeUpdate(sqlStr.toString());
         return true;
     }
@@ -87,7 +96,7 @@ public class UserMapper extends DBMapper{
         if (usertemp ==null) {
             return false;
         }
-        sqlStr = "DELETE FROM [userprofile] WHERE `username`='"+user.getUserName()+"'";
+        sqlStr = "DELETE FROM [userprofile] WHERE username='"+user.getUserName()+"'";
         st.executeUpdate(sqlStr.toString());
         return true;
     }
@@ -99,7 +108,7 @@ public class UserMapper extends DBMapper{
         if (usertemp ==null) {
             return false;
         }
-        sqlStr = "UPDATE [userprofile] set `password`='"+strnewpassword+"' WHERE `username`='"+user.getUserName()+"'";
+        sqlStr = "UPDATE [userprofile] set password='"+strnewpassword+"' WHERE username='"+user.getUserName()+"'";
         st.executeUpdate(sqlStr.toString());
         return true;
     }
@@ -111,11 +120,16 @@ public class UserMapper extends DBMapper{
         if (usertemp ==null) {
             return false;
         }
-        sqlStr = "UPDATE [userprofile] set `firstname`='"+user.getFirstName()+
-                "', `lastname`='"+user.getLastName() + "', `birthday`='"+user.getBirthday() +
-                "', `gender`='"+user.isGender() + "', `phone`='"+user.getPhone() +
-                "', `address`='"+user.getAddress() + "', `company`='"+user.getCompany() +
-                "', `datecreation`='"+user.getDateCreation() +"' WHERE `username`='"+user.getUserName()+"'";
+        DateFormat formatter ; 
+        Date date =new Date();  
+         formatter = new SimpleDateFormat("dd-MM-yyyy");  
+         String birthday = formatter.format(user.getBirthday());
+         String creationdate = formatter.format(date);
+        sqlStr = "UPDATE [userprofile] set firstname='"+user.getFirstName()+
+                "', lastname='"+user.getLastName() + "', birthday='"+birthday +
+                "', gender='"+user.isGender() + "', phone='"+user.getPhone() +
+                "', address='"+user.getAddress() + "', company='"+user.getCompany() +
+                "' WHERE username='"+user.getUserName()+"'";
         st.executeUpdate(sqlStr.toString());
         return true;
     }
@@ -124,7 +138,7 @@ public class UserMapper extends DBMapper{
         ArrayList listOfUsers = new ArrayList<UserBean>();
         UserBean usertemp = null;
         Statement st = con.createStatement();
-        String sqlStr="SELECT * FROM `UserProfile` WHERE username='"+user.getUserName()+"'";//+"' OR firstname='"+user.getFirstName()+"' OR lastname='"
+        String sqlStr="SELECT * FROM UserProfile WHERE username='"+user.getUserName()+"'";//+"' OR firstname='"+user.getFirstName()+"' OR lastname='"
                 //+user.getLastName()+"' OR birthday='"+user.getBirthday()+"';";
         ResultSet rs;
         rs = st.executeQuery(sqlStr.toString());
@@ -153,7 +167,7 @@ public class UserMapper extends DBMapper{
         ArrayList listOfUsers = new ArrayList<UserBean>();
         UserBean user = null;
         Statement st = con.createStatement();
-        String sqlStr="SELECT * FROM `UserProfile`";
+        String sqlStr="SELECT * FROM UserProfile";
         ResultSet rs;
         rs = st.executeQuery(sqlStr.toString());
         if (rs != null && rs.next()) {

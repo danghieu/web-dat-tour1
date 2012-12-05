@@ -6,7 +6,6 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -36,20 +35,21 @@ public class FailedHandleServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
                 String action = request.getParameter("action2");
+                out.print(action);
                 if (action.equals("Đăng nhập lại")) {               
-                    response.sendRedirect("./jsp/Login.jsp");
+                    response.sendRedirect("./jsp/user/Login.jsp");
                 }
                 else if(action.equals("Đăng ký lại"))
                 {
-                    response.sendRedirect("./jsp/Register.jsp");
+                    response.sendRedirect("./jsp/user/Register.jsp");
                 }
                 else if(action.equals("Đăng nhập"))
                 {
-                    response.sendRedirect("./jsp/Login.jsp");
+                    response.sendRedirect("./jsp/user/Login.jsp");
                 }
                 else if(action.equals("Quay về"))
                 {
-                    response.sendRedirect("./jsp/ChangePassword.jsp");
+                    response.sendRedirect("./jsp/user/ChangePassword.jsp");
                 }
             } catch (Exception ex) {
         out.println(ex.getMessage());

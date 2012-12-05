@@ -46,10 +46,10 @@ public class ChangePasswordServlet extends HttpServlet {
                     user.setPassword(newpasswordstring);
                     HttpSession session = request.getSession();
                     session.setAttribute("userbean", user);
-                    response.sendRedirect("./jsp/ChangePasswordSuccessed.jsp");
+                    response.sendRedirect("./jsp/user/ChangePasswordSuccessed.jsp");
                 }
                 else {
-                    response.sendRedirect("./jsp/LoginFailed.jsp");
+                    response.sendRedirect("./jsp/user/LoginFailed.jsp");
                 } 
         }catch (Exception ex) {
             out.println(ex.getMessage());
