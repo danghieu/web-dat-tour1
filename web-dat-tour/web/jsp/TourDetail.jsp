@@ -3,6 +3,11 @@
     Created on : Oct 28, 2012, 3:15:54 PM
     Author     : Karl
 --%>
+<%@page import="org.omg.CORBA.Environment"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.DateFormat"%>
+<%@page import="javabean.TourProgramBean"%>
+<%@page import="bo.TourProgramBO"%>
 <%-- 
     Document   : index
     Created on : Oct 24, 2012, 2:18:16 PM
@@ -17,19 +22,23 @@
 <%
     UserBean user = (UserBean) session.getAttribute("userbean");
 %>
+<%
+    TourBO tourBO=new TourBO();
+    TourBean tour=tourBO.isExist(request.getParameter("id"));
+%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Travel Booking - Chi tiết tour</title>
-<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css" type="text/css" media="screen" />
 
 <script
-   type='text/javascript' src="javascript/jquery.min.js"></script>
+   type='text/javascript' src="<%=request.getContextPath()%>/javascript/jquery.min.js"></script>
 <script
-   type='text/javascript' src="javascript/scrollto.js"></script>
+   type='text/javascript' src="<%=request.getContextPath()%>/javascript/scrollto.js"></script>
 <script
-   type='text/javascript' src="javascript/quotable.js"></script>
+   type='text/javascript' src="<%=request.getContextPath()%>/javascript/quotable.js"></script>
 <!--[if lte IE 6]><style>
 .wp-pagenavi a, .wp-pagenavi span.pages, .wp-pagenavi span.current, .wp-pagenavi span.extend {padding: 2px 0; margin: 1px;}
 </style><![endif]-->
@@ -51,16 +60,16 @@
 <!-- navigation start -->
 		<div id="navigation">
 		    <ul>
-				<li style="list-style: none;"><a href="./">Trang chủ</a></li>
-                                <% if(user.getRoleId().equals("1")) { %>
-                                <li style="list-style: none;"><a href="./jsp/ControlPanel.jsp">Trang quản lý</a></li>
+				<li style="list-style: none;"><a href="../">Trang chủ</a></li>
+                                <% if(user!=null&&user.getRoleId().equals("1")) { %>
+                                <li style="list-style: none;"><a href="ControlPanel.jsp">Trang quản lý</a></li>
                                 <% } %>
                                 <% if(user!=null) {%>             
-                                <li style="list-style: none;"><a href="./jsp/ChangePassword.jsp">Đổi mật khẩu</a></li>
-                                <li style="list-style: none;"><a href="./" onclick="<% session.removeAttribute("userbean") ; %>">Đăng xuất</a></li>
+                                <li style="list-style: none;"><a href="ChangePassword.jsp">Đổi mật khẩu</a></li>
+                                <li style="list-style: none;"><a href="../LogoutServlet" >Đăng xuất</a></li>
                                 <% } else { %>
-                                <li style="list-style: none;"><a href="./jsp/Register.jsp">Đăng ký</a></li>
-                                <li style="list-style: none;"><a href="./jsp/Login.jsp">Đăng nhập</a></li>
+                                <li style="list-style: none;"><a href="Register.jsp">Đăng ký</a></li>
+                                <li style="list-style: none;"><a href="Login.jsp">Đăng nhập</a></li>
                                 <% } %>
 			</ul>
 		</div>
@@ -79,7 +88,7 @@
 			<div id="searchform">
                             <!--<?php include(TEMPLATEPATH . '/searchform.php'); ?>-->
 			</div>
-			<div id="rss"><a href="./"><img src="css/images/spacer.gif" alt="RSS" height="40px" width="180px" /></a></div>
+			<div id="rss"><a href="./"><img src="<%=request.getContextPath()%>/css/images/spacer.gif" alt="RSS" height="40px" width="180px" /></a></div>
 			<ul>
 				<!--<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Sidebar1') ) : ?>-->
 				<li>
@@ -112,61 +121,60 @@
 
 <!-- content start -->
 		<div id="content">
-                    <jsp:useBean id="tourdetail" type="javabean.TourBean" scope="request" />                                 
-                    <h3> <% 
-                        TourBean tour= new TourBean();
-                        tour = tourdetail;
-                        out.print(tour.getTourProgram().getTourProgramName());
-                    %> <img src="../../images/bt_booking_s.png" alt="booking"></img> </h3> 
-
+                    <% if(tour!=null) { %>
+                    <h3><%=tour.getTourProgram().getTourProgramName() %> <a href="<%="Booking.jsp?id="+tour.getTourId()%>"><img src="../images/bt_booking_s.png" /></a></h3>
+                    <% DateFormat formatter ; 
+                         formatter = new SimpleDateFormat("dd-MM-yyyy");  
+                         String startdate = formatter.format(tour.getStartdate()); %> 
                     <fieldset>
                         <legend>Tour</legend>
-                        <div class="display-startdate">  
-                            Ngày khởi hành: <% java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("dd/MM/yyyy");
-                                                out.print(dateFormat.format(tour.getStartdate()));
-                                                %>
+                        <div class="display-startdate">
+                            Ngày khởi hành: <%=startdate %>
                         </div>
                         <div class="display-startplace">
-                            Nơi khởi hành: <%out.print(tour.getStartplace());%>
+                            Nơi khởi hành: <%=tour.getStartplace() %>
                         </div>
                         <div class="display-charge">
-                            Giá tour: <%out.print(tour.getBasiccharge());%> VNĐ
+                            Giá tour: <%=tour.getBasiccharge() %> VNĐ
                         </div>    
+                        <center><img alt="" src="<%=tour.getTourProgram().getImage() %>" width="400px" /></center>
                         <div class="display-label">
                             Lịch trình:
                         </div>
-                        <% for(int i=0;i<tour.getTourProgram().getItineraries().size();i++) { %>
                         <div class="display-field">
-                            <% out.println("<img src="+tour.getTourProgram().getItineraries().get(i).getImage()+"/>"); %>
-                            <% out.println("Ngày: "+tour.getTourProgram().getItineraries().get(i).getDay()); %>
-                            <% out.println(tour.getTourProgram().getItineraries().get(i).getDetail()); %>
+                            <%=tour.getTourProgram().getItinerary() %>
                         </div>
-                        <% } %>
                         <div class="display-label">
                             Lưu ý:
                         </div>
                         <div class="display-field">
-                            <% out.println(tour.getTourProgram().getNotice()); %>
+                            <%=tour.getTourProgram().getNotice() %>
                         </div>
                         <div class="display-label">
                             Giá bao gồm:
                         </div>
                         <div class="display-field">
-                            <% out.println(tour.getTourProgram().getInclude()); %>
+                            <%=tour.getTourProgram().getInclude() %>
                         </div>
                         <div class="display-label">
                             Giá không bao gồm:
                         </div>
                         <div class="display-field">
-                            <% out.println(tour.getTourProgram().getExclude()); %>
+                            <%=tour.getTourProgram().getExclude() %>
                         </div>
                         <div class="display-label">
                             Điều kiện thanh toán:
                         </div>
                         <div class="display-field">
-                           <% out.println(tour.getTourProgram().getPaymentCondition()); %>
+                            <%=tour.getTourProgram().getPaymentCondition() %>
                         </div>
+                        <div><center><a href="<%="Booking.jsp?id="+tour.getTourId()%>"><img src="../images/booking_icon_vi.jpg" /></a></center></div>
                     </fieldset>
+                    <% } else { %>
+                    <div class="display-label">
+                        Chi tiết Tour không tồn tài
+                    </div>
+                    <%}%>
 		</div>
 
 <!-- content end -->

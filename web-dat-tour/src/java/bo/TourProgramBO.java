@@ -4,12 +4,9 @@
  */
 package bo;
 
-import dbmapper.ItineraryMapper;
 import dbmapper.TourProgramMapper;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javabean.TourProgramBean;
 
 /**
@@ -17,16 +14,16 @@ import javabean.TourProgramBean;
  * @author AT
  */
 public class TourProgramBO {
-    public TourProgramBean isExist(String tourprogramid, String tourprogramname) throws Exception{
+    public String getTourProgramId() throws SQLException
+    {
+        TourProgramMapper tourProgramMapper=new TourProgramMapper();
+        return tourProgramMapper.getTourProgramId();
+    }
+    
+    public TourProgramBean isExist(String tourprogramid) throws Exception{
         TourProgramMapper tourProgramMapper=new TourProgramMapper();
         TourProgramBean tourprogram=null;
-        try {
-            tourprogram = tourProgramMapper.isExist(tourprogramid,tourprogramname);
-        } catch (SQLException ex) {
-            Logger.getLogger(ItineraryBO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            tourProgramMapper.con.close();
-        }
+        tourprogram = tourProgramMapper.isExist(tourprogramid);        
         return tourprogram;  
     }
     

@@ -37,12 +37,28 @@
         <servlet-class>servlet.EditTourProgramServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>DispatchEditTourProgramServlet</servlet-name>
-        <servlet-class>servlet.DispatchEditTourProgramServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>DeleteTourProgramServlet</servlet-name>
         <servlet-class>servlet.DeleteTourProgramServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>servlet.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateTourServlet</servlet-name>
+        <servlet-class>servlet.CreateTourServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditTourServlet</servlet-name>
+        <servlet-class>servlet.EditTourServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteTourServlet</servlet-name>
+        <servlet-class>servlet.DeleteTourServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BookingServlet</servlet-name>
+        <servlet-class>servlet.BookingServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -73,16 +89,32 @@
         <url-pattern>/EditTourProgramServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>DispatchEditTourProgramServlet</servlet-name>
-        <url-pattern>/DispatchEditTourProgramServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>DeleteTourProgramServlet</servlet-name>
         <url-pattern>/DeleteTourProgramServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/LogoutServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateTourServlet</servlet-name>
+        <url-pattern>/CreateTourServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditTourServlet</servlet-name>
+        <url-pattern>/EditTourServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteTourServlet</servlet-name>
+        <url-pattern>/DeleteTourServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BookingServlet</servlet-name>
+        <url-pattern>/BookingServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
-            30
+            86400
         </session-timeout>
     </session-config>
 </web-app>

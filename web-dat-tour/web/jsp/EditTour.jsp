@@ -3,6 +3,8 @@
     Created on : Oct 28, 2012, 3:15:54 PM
     Author     : Karl
 --%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.DateFormat"%>
 <%@page import="javabean.TourProgramBean"%>
 <%@page import="bo.TourProgramBO"%>
 <%-- 
@@ -18,20 +20,28 @@
 <%@page import="javabean.UserBean"%>
 <%
     UserBean user = (UserBean) session.getAttribute("userbean");
+    if(user==null || !user.getRoleId().equals("1"))
+    {
+        response.sendRedirect("./AccessDenied.jsp");
+    }
+%>
+<%
+    TourBO tourBO=new TourBO();
+    TourBean tour=tourBO.isExist(request.getParameter("id"));
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Travel Booking - Tạo chương trình tour</title>
-<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
+<title>Travel Booking - Xóa tour</title>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css" type="text/css" media="screen" />
 
 <script
-   type='text/javascript' src="javascript/jquery.min.js"></script>
+   type='text/javascript' src="<%=request.getContextPath()%>/javascript/jquery.min.js"></script>
 <script
-   type='text/javascript' src="javascript/scrollto.js"></script>
+   type='text/javascript' src="<%=request.getContextPath()%>/javascript/scrollto.js"></script>
 <script
-   type='text/javascript' src="javascript/quotable.js"></script>
+   type='text/javascript' src="<%=request.getContextPath()%>/javascript/quotable.js"></script>
 <!--[if lte IE 6]><style>
 .wp-pagenavi a, .wp-pagenavi span.pages, .wp-pagenavi span.current, .wp-pagenavi span.extend {padding: 2px 0; margin: 1px;}
 </style><![endif]-->
@@ -53,16 +63,16 @@
 <!-- navigation start -->
 		<div id="navigation">
 		    <ul>
-				<li style="list-style: none;"><a href="./">Trang chủ</a></li>
-                                <% if(user.getRoleId().equals("1")) { %>
-                                <li style="list-style: none;"><a href="./jsp/ControlPanel.jsp">Trang quản lý</a></li>
+				<li style="list-style: none;"><a href="../">Trang chủ</a></li>
+                                <% if(user!=null&&user.getRoleId().equals("1")) { %>
+                                <li style="list-style: none;"><a href="ControlPanel.jsp">Trang quản lý</a></li>
                                 <% } %>
                                 <% if(user!=null) {%>             
-                                <li style="list-style: none;"><a href="./jsp/ChangePassword.jsp">Đổi mật khẩu</a></li>
-                                <li style="list-style: none;"><a href="./" onclick="<% session.removeAttribute("userbean") ; %>">Đăng xuất</a></li>
+                                <li style="list-style: none;"><a href="ChangePassword.jsp">Đổi mật khẩu</a></li>
+                                <li style="list-style: none;"><a href="../LogoutServlet" >Đăng xuất</a></li>
                                 <% } else { %>
-                                <li style="list-style: none;"><a href="./jsp/Register.jsp">Đăng ký</a></li>
-                                <li style="list-style: none;"><a href="./jsp/Login.jsp">Đăng nhập</a></li>
+                                <li style="list-style: none;"><a href="Register.jsp">Đăng ký</a></li>
+                                <li style="list-style: none;"><a href="Login.jsp">Đăng nhập</a></li>
                                 <% } %>
 			</ul>
 		</div>
@@ -81,7 +91,7 @@
 			<div id="searchform">
                             <!--<?php include(TEMPLATEPATH . '/searchform.php'); ?>-->
 			</div>
-			<div id="rss"><a href="./"><img src="css/images/spacer.gif" alt="RSS" height="40px" width="180px" /></a></div>
+			<div id="rss"><a href="./"><img src="<%=request.getContextPath()%>/css/images/spacer.gif" alt="RSS" height="40px" width="180px" /></a></div>
 			<ul>
 				<!--<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Sidebar1') ) : ?>-->
 				<li>
@@ -114,78 +124,95 @@
 
 <!-- content start -->
 		<div id="content">
-                    <form action="../CreateTourServlet" method="POST" >
+                    <form action="../EditTourServlet" method="POST" >
                     <table>
                         <tr>
-                            <td><center><div style="color:red;size:15px" >TẠO TOUR MỚI</div></center></td>
+                            <td><center><div style="color:red;size:15px" >CHỈNH SỬA THÔNG TIN TOUR</div></center></td>
                         </tr>
                         <tr><td>
                             <table>
                                 <tbody style="border: 1px">
                                     <tr>
                                         <td align="right"><b>Mã tour:   </b></td>
-                                        <td><input type="text" name="tourid" value="" /></td>
+                                        <td><input type="text" name="tourid" value="<%= tour.getTourId() %>" readonly="true"/></td>
                                     </tr>
                                     <tr>
                                         <td align="right"><b>Tên chương trình tour:   </b></td>
-                                        <td><select name="tourprogramid">
+                                        <td><select name="tourprogramid" readonly="true">
                                                 <%  TourProgramBO tourprogrambo=new TourProgramBO();
                                                  ArrayList<TourProgramBean> listtourprogram= tourprogrambo.listAllTourProgram();
                                                     for(int i=0;i<listtourprogram.size();i++)
-                                                        out.print("<option value="+listtourprogram.get(i).getTourProgramId() +">"+listtourprogram.get(i).getTourProgramName()+"</option>");
+                                                        out.print("<option value="+listtourprogram.get(i).getTourProgramId() 
+        + ((listtourprogram.get(i).getTourProgramId()==tour.getTourProgram().getTourProgramId())?"selected=true":"") 
+                                                                +">"+listtourprogram.get(i).getTourProgramName()+"</option>");
                                                         %>
                                             </select></td>
                                     </tr>
                                     <tr>
                                         <td align="right"><b>Nơi khởi hành:   </b></td>
-                                        <td><input type="text" name="startplace" value="" /></td>
+                                        <td><input type="text" name="startplace" value="<%= tour.getStartplace() %>"/></td>
                                     </tr>
                                     <tr>
                                         <td align="right"><b>Ngày khởi hành:   </b></td>
-                                        <td><input type="text" name="startdate" value="" /></td>
+                                        <td>
+                                            <% DateFormat formatter ; 
+                                                formatter = new SimpleDateFormat("yyyy");  
+                                                int year= Integer.parseInt(formatter.format(tour.getStartdate())); %>
+                                            <select name="date">
+                                                <%  for(int i=1;i<=31;i++)
+                                                        out.print("<option "+ ((tour!=null && i==tour.getStartdate().getDate())?"selected":"") +">"+i+"</option>");
+                                                        %>
+                                            </select><select name="month">
+                                                <%  for(int i=1;i<=12;i++)
+                                                        out.print("<option "+ ((tour!=null && i==tour.getStartdate().getMonth())?"selected":"") +">"+i+"</option>");
+                                                        %></select><select name="year">
+                                                <%  for(int i=1900;i<=2099;i++)
+                                                        out.print("<option "+ ((tour!=null && i==year)?"selected":"") +">"+i+"</option>");
+                                                        %>
+                                            </select></td>
                                     </tr>
                                     <tr>
                                         <td align="right"><b>Nơi đến:   </b></td>
-                                        <td><input type="text" name="endplace" value="" /></td>
+                                        <td><input type="text" name="endplace" value="<%= tour.getEndplace() %>" /></td>
                                     </tr>
                                     <tr>
                                         <td align="right"><b>Số hành khách:   </b></td>
-                                        <td><input type="text" name="maxpeople" value="" /></td>
+                                        <td><input type="text" name="maxpeople" value="<%= tour.getMaxpeople() %>" /></td>
                                     </tr>
                                     <tr>
                                         <td align="right"><b>Giá tour:   </b></td>
-                                        <td><input type="text" name="basiccharge" value="" /></td>
+                                        <td><input type="text" name="basiccharge" value="<%= tour.getBasiccharge() %>" /></td>
                                     </tr>
                                     <tr>
                                         <td align="right"><b>Phụ thu:   </b></td>
-                                        <td><input type="text" name="surcharge" value="" /></td>
+                                        <td><input type="text" name="surcharge" value="<%= tour.getSurcharge() %>" /></td>
                                     </tr>
                                             <tr>
                                         <td align="right"><b>Phí sân bay:   </b></td>
-                                        <td><input type="text" name="airportcharge" value="" /></td>
+                                        <td><input type="text" name="airportcharge" value="<%= tour.getAirportcharge() %>" /></td>
                                     </tr>
                                     <tr>
                                         <td align="right"><b>Phụ thu phòng đơn:   </b></td>
-                                        <td><input type="text" name="singleroomsurcharge" value="" /></td>
+                                        <td><input type="text" name="singleroomsurcharge" value="<%= tour.getSingleroomsurcharge() %>" /></td>
                                     </tr>
                                     <tr>
                                         <td align="right"><b>Phụ phí Visa:   </b></td>
-                                        <td><input type="text" name="visasurcharge" value="" /></td>
+                                        <td><input type="text" name="visasurcharge" value="<%= tour.getVisasurcharge() %>" /></td>
                                     </tr>
                                     <tr>
                                         <td align="right"><b>Giá tour trẻ em:   </b></td>
-                                        <td><input type="text" name="kidcharge" value="" /></td>
+                                        <td><input type="text" name="kidcharge" value="<%= tour.getKidcharge() %>" /></td>
                                     </tr>
                                     <tr>
                                         <td align="right"><b>Giá tour trẻ nhỏ:   </b></td>
-                                        <td><input type="text" name="infantcharge" value="" /></td>
+                                        <td><input type="text" name="infantcharge" value="<%= tour.getInfantcharge() %>" /></td>
                                     </tr>
                                 </tbody>
                             </table>
                             </td>
                         </tr>                
                         <tr>
-                            <td> <center><input type="submit" value="Tạo mới" name="Create" /></center></td>
+                            <td> <center><input type="submit" value="Lưu" name="Delete" /></center></td>
                         </tr>
                     </table>
                 </form>

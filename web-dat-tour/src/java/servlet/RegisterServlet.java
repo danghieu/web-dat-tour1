@@ -17,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import utilities.MD5;
 
 /**
  *
@@ -41,7 +42,7 @@ public class RegisterServlet extends HttpServlet {
         try {
                 UserBean user=new UserBean();
                 user.setUserName(request.getParameter("username"));
-                user.setPassword(request.getParameter("password"));
+                user.setPassword(MD5.getMD5(request.getParameter("password")));
                 user.setFirstName(request.getParameter("firstname"));
                 user.setLastName(request.getParameter("lastname"));
                 user.setBirthday(new Date(request.getParameter("year")+"/"+request.getParameter("month")+"/"+request.getParameter("date")));

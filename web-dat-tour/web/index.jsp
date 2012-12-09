@@ -4,6 +4,9 @@
     Author     : Karl
 --%>
 
+<%@page import="utilities.MD5"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.DateFormat"%>
 <%@page import="javabean.TourBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="bo.TourBO"%>
@@ -17,7 +20,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Travel Booking</title>
-<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css" type="text/css" media="screen" />
 
 <script
    type='text/javascript' src="<%=request.getContextPath()%>/javascript/jquery.min.js"></script>
@@ -52,7 +55,7 @@
                                 <% } %>
                                 <% if(user!=null) {%>             
                                 <li style="list-style: none;"><a href="jsp/ChangePassword.jsp">Đổi mật khẩu</a></li>
-                                <li style="list-style: none;"><a href="./" onclick="<% session.removeAttribute("userbean") ; %>">Đăng xuất</a></li>
+                                <li style="list-style: none;"><a href="jsp/../LogoutServlet">Đăng xuất</a></li>
                                 <% } else { %>
                                 <li style="list-style: none;"><a href="jsp/Register.jsp">Đăng ký</a></li>
                                 <li style="list-style: none;"><a href="jsp/Login.jsp">Đăng nhập</a></li>
@@ -74,7 +77,7 @@
 			<div id="searchform">
                             <!--<?php include(TEMPLATEPATH . '/searchform.php'); ?>-->
 			</div>
-			<div id="rss"><a href="./"><img src="css/images/spacer.gif" alt="RSS" height="40px" width="180px" /></a></div>
+			<div id="rss"><a href="./"><img src="<%=request.getContextPath()%>/css/images/spacer.gif" alt="RSS" height="40px" width="180px" /></a></div>
 			<ul>
 				<!--<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Sidebar1') ) : ?>-->
 				<li>
@@ -109,18 +112,24 @@
 		<div id="content">
 
 			<% 
+                        DateFormat formatter ; 
+                        formatter = new SimpleDateFormat("dd-MM-yyyy");  
+                        
                         TourBO tourbo=new TourBO();
                         ArrayList<TourBean> listtour = tourbo.listAllTour(); 
                         if(listtour!=null){
-                        for(int i=0;i<8;i++) {%>
+                            for(int i=0;i<listtour.size();i++) {
+                                TourBean tour=listtour.get(i);
+                        %>
 
 					<div class="post">
-						<h2><a href="" title=""><%=listtour.get(i).getTourProgram().getTourProgramName() %></a></h2>
-						<p class="postmetadata">Điểm đến: <%=listtour.get(i).getEndplace()  %> Giá tour: <%=listtour.get(i).getBasiccharge()  %></p>
+						<h2><a href="" title=""><%=tour.getTourProgram().getTourProgramName() %></a></h2>
+						<p class="postmetadata">Ngày khởi hành: <%=formatter.format(tour.getStartdate())  %> | Điểm đến: <%=tour.getEndplace()  %> | Giá tour: <%=tour.getBasiccharge()  %> VNĐ<a href="<%="jsp/Booking.jsp?id="+tour.getTourId()%>"><img src="images/bt_booking_s.png" /></a></p>
 						<div class="entry">
-                                                    <% out.print("<img src='"+listtour.get(i).getTourProgram().getItineraries().get(1).getImage()+"'/>"); %>
-							<div class="endline"></div>
-							<!--<?php the_tags('<p class="tags"><strong>Tags:</strong> ', ', ', '</p>'); ?>-->
+                                                    <% out.print("<img src='"+tour.getTourProgram().getImage()+"' width='400px'/>"); %>
+							<div class="endline">
+                                                            <a href="<%="jsp/TourDetail.jsp?id="+tour.getTourId()%>">Chi tiết ... </a>
+                                                        </div>
 							<p class="commentline">
 								
 							</p>

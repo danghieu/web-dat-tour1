@@ -1,10 +1,6 @@
 package javabean;
 
 //  @ Project : web-dat-tour
-
-import java.util.*;
-
-//  @ File Name : TourProgramBean.java
 //  @ Date : 06/11/2012
 //  @ Author : An Tran
 //
@@ -21,7 +17,8 @@ public class TourProgramBean {
 	private  String Include;
 	private  String Exclude;
 	private  String PaymentCondition;
-        private ArrayList<ItineraryBean> Itineraries;
+        private String Image;
+        private String Itinerary;
 
     /**
      * @return the TourProgramId
@@ -122,17 +119,35 @@ public class TourProgramBean {
     }
 
     /**
-     * @return the Itineraries
+     * @return the Image
      */
-    public List<ItineraryBean> getItineraries() {
-        return Itineraries;
+    public String getImage() {
+        return Image;
     }
 
     /**
-     * @param Itineraries the Itineraries to set
+     * @param Image the Image to set
      */
-    public void setItineraries(ArrayList<ItineraryBean> Itineraries) {
-        this.Itineraries = Itineraries;
+    public void setImage(String Image) {
+        this.Image = Image;
     }
+
+    /**
+     * @return the Itinerary
+     */
+    public String getItinerary() {
+        return Itinerary;
+    }
+
+    /**
+     * @param Itinerary the Itinerary to set
+     */
+    public void setItinerary(String Itinerary) {
+        this.Itinerary = Itinerary;
+    }
+
+    /**
+     * @return the Itineraries
+     */
 
 }

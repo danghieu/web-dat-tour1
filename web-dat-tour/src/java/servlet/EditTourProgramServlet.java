@@ -7,6 +7,7 @@ package servlet;
 import bo.TourProgramBO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javabean.TourProgramBean;
@@ -43,16 +44,18 @@ public class EditTourProgramServlet extends HttpServlet {
                 tourprogram.setNotice(request.getParameter("notice"));
                 tourprogram.setInclude(request.getParameter("include"));
                 tourprogram.setExclude(request.getParameter("exclude"));
-                tourprogram.setPaymentCondition(request.getParameter("paymentcondition"));
+                tourprogram.setPaymentCondition(request.getParameter("paymentcondition"));                
+                tourprogram.setImage(request.getParameter("imagefile"));
+                tourprogram.setItinerary(request.getParameter("itinerary"));
                 TourProgramBO tourprogramBO=new TourProgramBO();
                 boolean isCreated=false;
                 isCreated=tourprogramBO.updateSpecifiedTourProgram(tourprogram);
                 out.println(isCreated);
                 if(isCreated==true) {
-                response.sendRedirect("./jsp/tourprogram/index.jsp");
+                response.sendRedirect("./jsp/ListTourProgram.jsp");
                 }
                 else {
-                response.sendRedirect("./jsp/user/RegisterFailed.jsp");
+                response.sendRedirect("./jsp/EditTourProgram.jsp?id="+request.getParameter("tourprogramid"));
             }      
                 
             

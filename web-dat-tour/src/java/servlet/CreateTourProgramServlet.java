@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -37,6 +38,7 @@ public class CreateTourProgramServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
                 TourProgramBean tourprogram=new TourProgramBean();
+                out.println(request.getParameter("tourprogramid"));
                 tourprogram.setTourProgramId(request.getParameter("tourprogramid"));
                 tourprogram.setTourProgramName(request.getParameter("tourprogramname"));
                 tourprogram.setTransportation(request.getParameter("transportation"));
@@ -44,21 +46,27 @@ public class CreateTourProgramServlet extends HttpServlet {
                 tourprogram.setInclude(request.getParameter("include"));
                 tourprogram.setExclude(request.getParameter("exclude"));
                 tourprogram.setPaymentCondition(request.getParameter("paymentcondition"));
+                tourprogram.setImage(request.getParameter("image"));
+                tourprogram.setItinerary(request.getParameter("itinerary"));
+                
                 TourProgramBO tourprogramBO=new TourProgramBO();
                 boolean isCreated=false;
                 isCreated=tourprogramBO.createNewTourProgram(tourprogram);
                 out.println(isCreated);
                 if(isCreated==true) {
-                response.sendRedirect("./jsp/IndexTourProgram.jsp");
+                response.sendRedirect("./jsp/ListTourProgram.jsp");
                 }
                 else {
-                response.sendRedirect("./jsp/RegisterFailed.jsp");
+                    HttpSession session = request.getSession();
+                    session.setAttribute("tourprogram", tourprogram);
+                    session.setAttribute("loi", "Mã chương trình tour đã tồn tại");
+                response.sendRedirect("./jsp/CreateTourProgram.jsp");
             }      
                 
             
         } catch (Exception ex) {
             out.println(ex.getMessage());
-            Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CreateTourProgramServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

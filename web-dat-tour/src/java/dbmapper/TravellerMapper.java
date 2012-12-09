@@ -5,8 +5,13 @@
 package dbmapper;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import javabean.TravellerBean;
 
 /**
@@ -14,21 +19,34 @@ import javabean.TravellerBean;
  * @author AT
  */
 public class TravellerMapper extends DBMapper{
+    
+    
+    
+    public String getTravellerId() throws SQLException
+    {
+        Calendar toDay = Calendar.getInstance();
+        int year = toDay.get(Calendar.YEAR);
+        String Value=removeCharAt(removeCharAt(String.valueOf(year),0),0);
+        String lastID = GetTopDataCell("Traveller","Travellerid","Travellerid");
+        String nextID = NextID(lastID,"HK"+Value); 
+        return nextID;
+    }
+    
     public TravellerBean isExist(String travellerid) throws Exception {
         TravellerBean traveller = null;
         Statement st = con.createStatement();
-        String sqlStr="SELECT * FROM Traveller WHERE TravellerId='"+travellerid+"'";
+        String sqlStr="SELECT * FROM [Traveller] WHERE TravellerId like'%"+travellerid+"%'";
         ResultSet rs;
         rs = st.executeQuery(sqlStr.toString());
         if (rs != null && rs.next()) {
             traveller = new TravellerBean();
-            traveller.setTravellerId(rs.getString("travellerid"));
+            traveller.setTravellerId(rs.getString("TravellerId"));
             traveller.setName(rs.getString("name"));
-            traveller.setGender(rs.getBoolean("gender"));
             traveller.setBirthday(rs.getDate("birthday"));
+            traveller.setGender(rs.getBoolean("gender"));
             traveller.setAddress(rs.getString("address"));
-            traveller.setSingleRoom(rs.getBoolean("SingleRoom"));
-            traveller.setClientType(rs.getString("clientype"));
+            traveller.setSingleRoom(rs.getBoolean("singleroom"));
+            traveller.setClientType(rs.getString("clienttype"));
         }
         return traveller;
     }
@@ -40,11 +58,18 @@ public class TravellerMapper extends DBMapper{
         if (travellertemp !=null) {
             return false;
         }
-        sqlStr = "insert into [traveller](travellerid,name,birthday,gender"
-                + ",address,singleroom,clientype)"
-                + " values('"+traveller.getTravellerId()+"','"+traveller.getName()+"','"
-                +traveller.getBirthday()+"','"+traveller.getGender()+"','"+traveller.getAddress()
-                +"','"+(traveller.getSingleRoom()?"1":"0")+"','"+traveller.getClientType()+"')";
+        DateFormat formatter ;  
+         formatter = new SimpleDateFormat("dd-MM-yyyy");  
+         String birthday = formatter.format(traveller.getBirthday());
+        sqlStr = "INSERT INTO [web-dat-tour].[dbo].[Traveller]"
+        +"VALUES"
+           +"('"+traveller.getTravellerId()
+           +"',N'"+traveller.getName()
+           +"','"+birthday
+           +"',"+(traveller.getGender()?"1":"0")
+           +",N'"+traveller.getAddress()
+           +"',"+(traveller.getSingleRoom()?"1":"0")
+           +",N'"+traveller.getClientType()+"')";
         st.executeUpdate(sqlStr.toString());
         return true;
     }
@@ -53,13 +78,13 @@ public class TravellerMapper extends DBMapper{
         Statement st = con.createStatement();
         String sqlStr;
         TravellerBean travellertemp = isExist(traveller.getTravellerId());
-        if (travellertemp !=null) {
+        if (travellertemp == null) {
             return false;
         }
-        sqlStr = "UPDATE [traveller] set name='"+traveller.getName()+
+        sqlStr = "UPDATE [traveller] set name=N'"+traveller.getName()+
                 "', birthday='"+traveller.getBirthday() + "', gender='"+traveller.getGender() +
-                 "', address='"+traveller.getAddress() +"', singlroom='"+traveller.getSingleRoom() +
-                 "', clienttype='"+traveller.getClientType() +" WHERE travellerid='"+
+                 "', address=N'"+traveller.getAddress() +"', singlroom='"+traveller.getSingleRoom() +
+                 "', clienttype=N'"+traveller.getClientType() +" WHERE travellerid='"+
                 traveller.getTravellerId()+"'";
         st.executeUpdate(sqlStr.toString());
         return true;
@@ -69,7 +94,7 @@ public class TravellerMapper extends DBMapper{
         Statement st = con.createStatement();
         String sqlStr;
         TravellerBean travellertemp = isExist(traveller.getTravellerId());
-        if (travellertemp !=null) {
+        if (travellertemp ==null) {
             return false;
         }
         sqlStr = "DELETE FROM [traveller] WHERE travellerid='"+
@@ -86,7 +111,7 @@ public class TravellerMapper extends DBMapper{
         String sqlStr="SELECT * FROM Traveller";
         ResultSet rs;
         rs = st.executeQuery(sqlStr.toString());
-        if (rs != null && rs.next()) {
+        while (rs != null && rs.next()) {
             traveller = new TravellerBean();
             traveller.setTravellerId(rs.getString("travellerid"));
             traveller.setName(rs.getString("name"));
@@ -106,10 +131,10 @@ public class TravellerMapper extends DBMapper{
         ArrayList listOfTravellers = new ArrayList<TravellerBean>();
         TravellerBean traveller = null;
         Statement st = con.createStatement();
-        String sqlStr="SELECT * FROM Traveller WHERE name='"+Name+"'";
+        String sqlStr="SELECT * FROM Traveller WHERE name=N'"+Name+"'";
         ResultSet rs;
         rs = st.executeQuery(sqlStr.toString());
-        if (rs != null && rs.next()) {
+        while (rs != null && rs.next()) {
             traveller = new TravellerBean();
             traveller.setTravellerId(rs.getString("travellerid"));
             traveller.setName(rs.getString("name"));
@@ -123,4 +148,6 @@ public class TravellerMapper extends DBMapper{
         
         return listOfTravellers;
     }
+    
+    
 }

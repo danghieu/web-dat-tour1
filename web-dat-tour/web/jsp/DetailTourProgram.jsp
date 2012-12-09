@@ -1,37 +1,31 @@
-<%-- 
-    Document   : Register
-    Created on : Oct 28, 2012, 3:15:54 PM
-    Author     : Karl
---%>
 <%@page import="javabean.TourProgramBean"%>
 <%@page import="bo.TourProgramBO"%>
-<%-- 
-    Document   : index
-    Created on : Oct 24, 2012, 2:18:16 PM
-    Author     : Karl
---%>
-
-<%@page import="javabean.TourBean"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="bo.TourBO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="javabean.UserBean"%>
 <%
     UserBean user = (UserBean) session.getAttribute("userbean");
+    if(user==null || !user.getRoleId().equals("1"))
+    {
+        response.sendRedirect("./AccessDenied.jsp");
+    }
 %>
-
+<%
+    TourProgramBO tourBO=new TourProgramBO();
+    TourProgramBean tourprogram=tourBO.isExist(request.getParameter("id"));
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Travel Booking - Tạo chương trình tour</title>
-<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css" type="text/css" media="screen" />
 
 <script
-   type='text/javascript' src="javascript/jquery.min.js"></script>
+   type='text/javascript' src="<%=request.getContextPath()%>/javascript/jquery.min.js"></script>
 <script
-   type='text/javascript' src="javascript/scrollto.js"></script>
+   type='text/javascript' src="<%=request.getContextPath()%>/javascript/scrollto.js"></script>
 <script
-   type='text/javascript' src="javascript/quotable.js"></script>
+   type='text/javascript' src="<%=request.getContextPath()%>/javascript/quotable.js"></script>
 <!--[if lte IE 6]><style>
 .wp-pagenavi a, .wp-pagenavi span.pages, .wp-pagenavi span.current, .wp-pagenavi span.extend {padding: 2px 0; margin: 1px;}
 </style><![endif]-->
@@ -53,16 +47,16 @@
 <!-- navigation start -->
 		<div id="navigation">
 		    <ul>
-				<li style="list-style: none;"><a href="./">Trang chủ</a></li>
+				<li style="list-style: none;"><a href="../">Trang chủ</a></li>
                                 <% if(user!=null&&user.getRoleId().equals("1")) { %>
-                                <li style="list-style: none;"><a href="./jsp/ControlPanel.jsp">Trang quản lý</a></li>
+                                <li style="list-style: none;"><a href="ControlPanel.jsp">Trang quản lý</a></li>
                                 <% } %>
                                 <% if(user!=null) {%>             
-                                <li style="list-style: none;"><a href="./jsp/ChangePassword.jsp">Đổi mật khẩu</a></li>
-                                <li style="list-style: none;"><a href="./" onclick="<% session.removeAttribute("userbean") ; %>">Đăng xuất</a></li>
+                                <li style="list-style: none;"><a href=""ChangePassword.jsp">Đổi mật khẩu</a></li>
+                                <li style="list-style: none;"><a href="../LogoutServlet" >Đăng xuất</a></li>
                                 <% } else { %>
-                                <li style="list-style: none;"><a href="./jsp/Register.jsp">Đăng ký</a></li>
-                                <li style="list-style: none;"><a href="./jsp/Login.jsp">Đăng nhập</a></li>
+                                <li style="list-style: none;"><a href="Register.jsp">Đăng ký</a></li>
+                                <li style="list-style: none;"><a href="Login.jsp">Đăng nhập</a></li>
                                 <% } %>
 			</ul>
 		</div>
@@ -81,7 +75,7 @@
 			<div id="searchform">
                             <!--<?php include(TEMPLATEPATH . '/searchform.php'); ?>-->
 			</div>
-			<div id="rss"><a href="./"><img src="css/images/spacer.gif" alt="RSS" height="40px" width="180px" /></a></div>
+			<div id="rss"><a href="./"><img src="<%=request.getContextPath()%>/css/images/spacer.gif" alt="RSS" height="40px" width="180px" /></a></div>
 			<ul>
 				<!--<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Sidebar1') ) : ?>-->
 				<li>
@@ -114,38 +108,63 @@
 
 <!-- content start -->
 		<div id="content">
-                    <% TourProgramBO tourpogramBO=new TourProgramBO();
-                        ArrayList<TourProgramBean> listTouProgram=tourpogramBO.listAllTourProgram(); %>
+                   <form method="POST" >
                     <table>
                         <tr>
-                            <th>
-                                Mã chương trình tour
-                            </th>
-                            <th>
-                                Tên chương trình tour
-                            </th>
-                            <th></th>
+                            <td><center><div style="color:red;size:15px" >CHI TIẾT CHƯƠNG TRÌNH TOUR <% out.print(tourprogram.getTourProgramName()); %></div></center></td>
                         </tr>
-
-                    <% for (int i=0;i< listTouProgram.size();i++) { %>
+                        <tr><td>
+                            <table>
+                                <tbody style="border: 1px">
+                                    <tr>
+                                        <td align="right"><b>Mã chương trình tour:   </b></td>
+                                        <td><% out.print(tourprogram.getTourProgramId()); %></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="right"><b>Tên chương trình tour:   </b></td>
+                                        <td><% out.print(tourprogram.getTourProgramName()); %></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="right"><b>Hình ảnh:   </b></td>
+                                        <td><img src=" <% out.print(tourprogram.getImage()); %> "/></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="right"><b>Lịch trình:   </b></td>
+                                        <td><% out.print(tourprogram.getItinerary()); %></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="right"><b>Lưu ý:   </b></td>
+                                        <td><% out.print(tourprogram.getNotice()); %></td>
+                                    </tr>
+                                   
+                                    
+                                    <tr>
+                                        <td align="right"><b>Phương tiện:   </b></td>
+                                        <td><% out.print(tourprogram.getTransportation()); %></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="right"><b>Giá bao gồm:   </b></td>
+                                        <td><% out.print(tourprogram.getInclude()); %></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="right"><b>Giá không bao gồm:   </b></td>
+                                        <td><% out.print(tourprogram.getExclude()); %></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="right"><b>Điều kiện thanh toán:   </b></td>
+                                        <td><% out.print(tourprogram.getPaymentCondition()); %></td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                            </td>
+                        </tr>                
                         <tr>
-                            <td>
-                                <% out.print(listTouProgram.get(i).getTourProgramId()); %>
-                            </td>
-                            <td>
-                                <% out.print(listTouProgram.get(i).getTourProgramName()); %>
-                            </td>
-                            <td>
-                                <%: Html.ActionLink("Chỉnh sửa", "Edit", new { id=item.TourProgramId }) %> |
-                                <%: Html.ActionLink("Chi tiết", "Details", new { id=item.TourProgramId }) %> |
-                                <%: Html.ActionLink("Xóa", "Delete", new { id=item.TourProgramId }) %>
-                            </td>
+                            <td> <center><a href="ListTourProgram.jsp">Trở về danh sách chương trình tour</a></center></td>
                         </tr>
-                    <% } %>
-
                     </table>
-
-		</div>
+                </form>
+            </div>
 
 <!-- content end -->
 

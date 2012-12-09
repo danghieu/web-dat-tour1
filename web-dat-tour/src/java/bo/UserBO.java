@@ -27,6 +27,20 @@ public class UserBO {
 
     }
     
+    public UserBean isExist(String username) throws Exception {
+        UserMapper userMapper = new UserMapper();
+        UserBean user = null;
+        try {
+            user = userMapper.isExist(username);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            userMapper.con.close();
+        }
+        return user;
+
+    }
+    
     public boolean createNewUser(UserBean user)throws Exception
     {
         UserMapper userMapper=new UserMapper();
