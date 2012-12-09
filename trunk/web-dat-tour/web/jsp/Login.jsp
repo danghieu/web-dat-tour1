@@ -7,9 +7,6 @@
 <%@page import="javabean.UserBean"%>
 <%
     UserBean user = (UserBean) session.getAttribute("userbean");
-    if (user != null) {
-        response.sendRedirect("./");
-    }
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -46,16 +43,16 @@
 <!-- navigation start -->
 		<div id="navigation">
 		    <ul>
-				<li style="list-style: none;"><a href="./">Trang chủ</a></li>
+				<li style="list-style: none;"><a href="../">Trang chủ</a></li>
                                 <% if(user!=null&&user.getRoleId().equals("1")) { %>
-                                <li style="list-style: none;"><a href="./jsp/user/ControlPanel.jsp">Trang quản lý</a></li>
+                                <li style="list-style: none;"><a href="">Trang quản lý</a></li>
                                 <% } %>
                                 <% if(user!=null) {%>   
-                                <li style="list-style: none;"><a href="./jsp/user/ChangePassword.jsp">Đổi mật khẩu</a></li>
-                                <li style="list-style: none;"><a href="./" onclick="<% session.removeAttribute("userbean") ; %>">Đăng xuất</a></li>
+                                <li style="list-style: none;"><a href="ChangePassword.jsp">Đổi mật khẩu</a></li>
+                                <li style="list-style: none;"><a href="../LogoutServlet" >Đăng xuất</a></li>
                                 <% } else { %>
-                                <li style="list-style: none;"><a href="./jsp/user/Register.jsp">Đăng ký</a></li>
-                                <li style="list-style: none;"><a href="./jsp/user/Login.jsp">Đăng nhập</a></li>
+                                <li style="list-style: none;"><a href="Register.jsp">Đăng ký</a></li>
+                                <li style="list-style: none;"><a href="Login.jsp">Đăng nhập</a></li>
                                 <% } %>
 			</ul>
 		</div>
@@ -74,7 +71,7 @@
 			<div id="searchform">
                             <!--<?php include(TEMPLATEPATH . '/searchform.php'); ?>-->
 			</div>
-			<div id="rss"><a href="./"><img src="css/images/spacer.gif" alt="RSS" height="40px" width="180px" /></a></div>
+			<div id="rss"><a href="./"><img src="<%=request.getContextPath()%>/css/images/spacer.gif" alt="RSS" height="40px" width="180px" /></a></div>
 			<ul>
 				<!--<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Sidebar1') ) : ?>-->
 				<li>
@@ -118,14 +115,15 @@
                     </tr>
                     <tr>
                         <td align="right"><b>Người dùng:   </b></td>
-                        <td><input type="text" name="username" value="" /></td>
+                        <td><input type="text" name="username" value="" style="width: 250px"/></td>
                     </tr>
                     <tr>
                         <td align="right"><b>Mật khẩu:   </b></td>
-                        <td><input type="password" name="password" value="" /></td>
+                        <td><input type="password" name="password" value="" style="width: 250px"/></td>
                     </tr>
                     <tr>
-                        <td><input type="submit" value="Đăng nhập" name="action"/></td>
+                        <td></td>
+                        <td align="center"><input type="submit" value="Đăng nhập" name="action"/></td>
                     </tr>
                 </tbody>
             </table>

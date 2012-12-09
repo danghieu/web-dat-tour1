@@ -105,7 +105,7 @@ public class UserMapper extends DBMapper{
         Statement st = con.createStatement();
         String sqlStr;
         UserBean usertemp = isExist(user.getUserName(),user.getPassword());
-        if (usertemp ==null) {
+        if (usertemp == null) {
             return false;
         }
         sqlStr = "UPDATE [userprofile] set password='"+strnewpassword+"' WHERE username='"+user.getUserName()+"'";

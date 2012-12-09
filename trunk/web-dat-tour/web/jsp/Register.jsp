@@ -50,16 +50,16 @@
 <!-- navigation start -->
 		<div id="navigation">
 		    <ul>
-				<li style="list-style: none;"><a href="./">Trang chủ</a></li>
+				<li style="list-style: none;"><a href="../">Trang chủ</a></li>
                                 <% if(user!=null&&user.getRoleId().equals("1")) { %>
-                                <li style="list-style: none;"><a href="./jsp/user/ControlPanel.jsp">Trang quản lý</a></li>
+                                <li style="list-style: none;"><a href="ControlPanel.jsp">Trang quản lý</a></li>
                                 <% } %>
                                 <% if(user!=null) {%>             
-                                <li style="list-style: none;"><a href="./jsp/user/ChangePassword.jsp">Đổi mật khẩu</a></li>
-                                <li style="list-style: none;"><a href="./" onclick="<% session.removeAttribute("userbean") ; %>">Đăng xuất</a></li>
+                                <li style="list-style: none;"><a href="ChangePassword.jsp">Đổi mật khẩu</a></li>
+                                <li style="list-style: none;"><a href="../LogoutServlet" >Đăng xuất</a></li>
                                 <% } else { %>
-                                <li style="list-style: none;"><a href="./jsp/user/Register.jsp">Đăng ký</a></li>
-                                <li style="list-style: none;"><a href="./jsp/user/Login.jsp">Đăng nhập</a></li>
+                                <li style="list-style: none;"><a href="Register.jsp">Đăng ký</a></li>
+                                <li style="list-style: none;"><a href="Login.jsp">Đăng nhập</a></li>
                                 <% } %>
 			</ul>
 		</div>
@@ -78,7 +78,7 @@
 			<div id="searchform">
                             <!--<?php include(TEMPLATEPATH . '/searchform.php'); ?>-->
 			</div>
-			<div id="rss"><a href="./"><img src="css/images/spacer.gif" alt="RSS" height="40px" width="180px" /></a></div>
+			<div id="rss"><a href="./"><img src="<%=request.getContextPath()%>/css/images/spacer.gif" alt="RSS" height="40px" width="180px" /></a></div>
 			<ul>
 				<!--<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Sidebar1') ) : ?>-->
 				<li>
@@ -122,30 +122,23 @@
                                 <tbody>
                                     <tr>
                                         <td align="right"><b>Người dùng:   </b></td>
-                                        <td><input type="text" name="username" value="" /></td>
+                                        <td><input type="text" name="username" value="" style="width: 250px"/></td>
                                     </tr>
                                     <tr>
                                         <td align="right"><b>Mật khẩu:   </b></td>
-                                        <td><input type="password" name="password" value="" /></td>
+                                        <td><input type="password" name="password" value="" style="width: 250px"/></td>
                                     </tr>
                                     <tr>
                                         <td align="right"><b>Nhập lại mật khẩu:   </b></td>
-                                        <td><input type="password" name="retypepassword" value="" /></td>
-                                    </tr>                            
-                                </tbody>
-                            </table>
-                        </td></tr>
-                        <tr style="height:20px;bgcolor:lightblue;"><td></td></tr>
-                        <tr><td>
-                            <table>
-                                <tbody style="border: 1px">
+                                        <td><input type="password" name="retypepassword" value="" style="width: 250px"/></td>
+                                    </tr>  
                                     <tr>
                                         <td align="right"><b>Họ:   </b></td>
-                                        <td><input type="text" name="lastname" value="" /></td>
+                                        <td><input type="text" name="lastname" value="" style="width: 250px"/></td>
                                     </tr>
                                     <tr>
                                         <td align="right"><b>Tên:   </b></td>
-                                        <td><input type="text" name="firstname" value="" /></td>
+                                        <td><input type="text" name="firstname" value="" style="width: 250px"/></td>
                                     </tr>
                                     <tr>
                                         <td align="right"><b>Ngày sinh:   </b></td>
@@ -171,29 +164,28 @@
                                     </tr>
                                     <tr>
                                         <td align="right"><b>Điện thoại:   </b></td>
-                                        <td><input type="text" name="phone" value="" /></td>
+                                        <td><input type="text" name="phone" value="" style="width: 250px"/></td>
                                     </tr>
                                     <tr>
                                         <td align="right"><b>Email:   </b></td>
-                                        <td><input type="text" name="email" value="" /></td>
+                                        <td><input type="text" name="email" value="" style="width: 250px"/></td>
                                     </tr>
                                     <tr>
                                         <td align="right"><b>Nhập lại email:   </b></td>
-                                        <td><input type="text" name="nlemail" value="" /></td>
+                                        <td><input type="text" name="nlemail" value="" style="width: 250px"/></td>
                                     </tr>
                                     <tr>
                                         <td align="right"><b>Điạ chỉ:   </b></td>
-                                        <td><textarea name="address" rows="4" cols="20">
-                                            </textarea></td>
+                                        <td><textarea name="address" rows="4" cols="30"></textarea></td>
                                     </tr>
                                     <tr>
                                         <td align="right"><b>Công ty:   </b></td>
-                                        <td><input type="text" name="company" value="" /></td>
+                                        <td><input type="text" name="company" value="" style="width: 250px"/></td>
                                     </tr>
                                 </tbody>
                             </table>
-                            </td>
-                        </tr>                
+                        </td></tr>
+                          
                         <tr>
                             <td> <center><input type="submit" value="Đăng ký" name="Resgister" /></center></td>
                         </tr>

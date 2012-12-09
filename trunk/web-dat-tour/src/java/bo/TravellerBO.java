@@ -6,6 +6,7 @@ package bo;
 
 import dbmapper.TravellerMapper;
 import dbmapper.UserMapper;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javabean.TravellerBean;
 
@@ -14,6 +15,12 @@ import javabean.TravellerBean;
  * @author AT
  */
 public class TravellerBO {
+    public String getTravllerId() throws SQLException
+    {
+        TravellerMapper travellerMapper = new TravellerMapper();
+        return travellerMapper.getTravellerId();
+    }
+    
     public TravellerBean isExist(String travellerid) throws Exception {
         TravellerMapper travellerMapper = new TravellerMapper();
         TravellerBean traveller = null;

@@ -18,6 +18,7 @@ public class TourContactBean {
         private TravellerBean Traveller;
         private UserBean UserName;
         private TourBean Tour;
+        private String Payment;
 
     /**
      * @return the TourContactId
@@ -87,6 +88,20 @@ public class TourContactBean {
      */
     public void setTour(TourBean Tour) {
         this.Tour = Tour;
+    }
+
+    /**
+     * @return the Payment
+     */
+    public String getPayment() {
+        return Payment;
+    }
+
+    /**
+     * @param Payment the Payment to set
+     */
+    public void setPayment(String Payment) {
+        this.Payment = Payment;
     }
 
 }

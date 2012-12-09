@@ -17,17 +17,18 @@ import javabean.TourBean;
  * @author AT
  */
 public class TourBO {
+    
+    public String getTouId() throws SQLException
+    {
+        TourMapper tourMapper=new TourMapper();
+        return tourMapper.getTourId();
+    }
+    
     public TourBean isExist(String tourid) throws Exception
     {
         TourMapper tourMapper=new TourMapper();
         TourBean tour=null;
-        try {
-            tour = tourMapper.isExist(tourid);
-        } catch (SQLException ex) {
-            Logger.getLogger(ItineraryBO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            tourMapper.con.close();
-        }
+        tour = tourMapper.isExist(tourid);
         return tour;  
     }
     public boolean createNewTour(TourBean tour) throws Exception

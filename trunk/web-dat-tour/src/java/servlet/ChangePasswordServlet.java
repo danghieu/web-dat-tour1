@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import utilities.MD5;
 
 /**
  *
@@ -39,17 +40,20 @@ public class ChangePasswordServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
                 UserBean user=(UserBean) request.getSession().getAttribute("userbean");
-                String newpasswordstring=request.getParameter("newpassword");
+                user.setPassword(request.getParameter("oldpassword"));
+                String newpasswordstring=MD5.getMD5(request.getParameter("newpassword"));
                 UserBO userBO = new UserBO();
                 boolean isUpdated=userBO.changeUserPassword(user, newpasswordstring);
                 if(isUpdated==true) {
                     user.setPassword(newpasswordstring);
                     HttpSession session = request.getSession();
                     session.setAttribute("userbean", user);
-                    response.sendRedirect("./jsp/user/ChangePasswordSuccessed.jsp");
+                    response.sendRedirect("./jsp/ChangePasswordSuccessed.jsp");
                 }
                 else {
-                    response.sendRedirect("./jsp/user/LoginFailed.jsp");
+                    HttpSession session = request.getSession();
+                    session.setAttribute("changepassfail", "fail");
+                    response.sendRedirect("./jsp/ChangePassword.jsp");
                 } 
         }catch (Exception ex) {
             out.println(ex.getMessage());

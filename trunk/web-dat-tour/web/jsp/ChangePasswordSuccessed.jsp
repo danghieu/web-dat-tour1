@@ -41,16 +41,16 @@
 <!-- navigation start -->
 		<div id="navigation">
 		    <ul>
-				<li style="list-style: none;"><a href="./">Trang chủ</a></li>
+				<li style="list-style: none;"><a href="../">Trang chủ</a></li>
                                 <% if(user!=null&&user.getRoleId().equals("1")) { %>
-                                <li style="list-style: none;"><a href="./jsp/user/ControlPanel.jsp">Trang quản lý</a></li>
+                                <li style="list-style: none;"><a href="ControlPanel.jsp">Trang quản lý</a></li>
                                 <% } %>
                                 <% if(user!=null) {%>           
-                                <li style="list-style: none;"><a href="./jsp/user/ChangePassword.jsp">Đổi mật khẩu</a></li>
-                                <li style="list-style: none;"><a href="./" onclick="<% session.removeAttribute("userbean") ; %>">Đăng xuất</a></li>
+                                <li style="list-style: none;"><a href="ChangePassword.jsp">Đổi mật khẩu</a></li>
+                                <li style="list-style: none;"><a href="../LogoutServlet" >Đăng xuất</a></li>
                                 <% } else { %>
-                                <li style="list-style: none;"><a href="./jsp/user/Register.jsp">Đăng ký</a></li>
-                                <li style="list-style: none;"><a href="./jsp/user/Login.jsp">Đăng nhập</a></li>
+                                <li style="list-style: none;"><a href="Register.jsp">Đăng ký</a></li>
+                                <li style="list-style: none;"><a href="Login.jsp">Đăng nhập</a></li>
                                 <% } %>
 			</ul>
 		</div>

@@ -12,16 +12,16 @@ Tags: brown, fixed-width, two-columns, left-sidebar, threaded-comments
 /* Global */
 
 body {
-	font-size: 62.5%; /* Resets 1em to 10px */
+	font-size: 0.75em; /* Resets 1.2em to 10px */
 	font-family: Arial, Verdana, Sans-Serif;
 	background: #f0c98a url(./images/body-bg.jpg);
 	color: #000;
-	margin: 0;
-	padding: 0;
+	margin: 1px;
+	padding: 1px;
 }
 
 acronym, abbr, span.caps {
-	font-size: 0.9em;
+	font-size: 1.2em;
 	letter-spacing: .07em;
 	cursor: help;
 	border-bottom: 1px dashed #999999;
@@ -126,9 +126,9 @@ h2 {
 
 #searchform {
 	width: 292px;
-	height: 95px;
+	height: 250px;
 	margin: 0;
-	background: url(./images/search.jpg) no-repeat;
+	/*background: url(./images/search.jpg) no-repeat;*/
 }
 #searchform input {
 	float: left;
@@ -146,12 +146,121 @@ h2 {
 	border: none;
 	background: transparent;
 }
-#searchform .searchbutton{
-	width: 56px;
-	height: 66px;
+#searchform .searchselect {
+	margin: 5px 1px 5px 78px;
+	width: 134px;
+	display: inline;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.5em;
+	border: none;
+	background: transparent;
 }
-#searchform label {
-	display: none;
+#searchform .searchbutton{
+	margin: 5px 1px 5px 78px;
+}
+.main-content-tour
+    {
+        padding-top:50px;
+        background:url(./Images/hottour.png) no-repeat;
+        max-width:673px;
+        float:inherit;
+    }
+    .main-tour
+    {
+        padding-top:70px;
+	    float:left;
+	    max-width:673px;
+	    background:url(./Images/hottour.png) no-repeat;
+	    height:50;
+	}
+	.photo{
+        display:block;
+        float:left;
+        width:150px;
+        padding:1px 1px 1px 1px;
+    }
+    .detail{
+        display:block;
+        font-size:1.2em;
+        color:gray; 
+        float:left;
+        width:150px;
+        padding:1px 1px 1px 1px;  
+    }
+    .frame
+    {
+        padding:1px 1px 1px 1px; 
+        width:160px;
+        height:230px;
+        float:left;
+    }
+    
+    /*display*/
+.display-label
+{
+    display: block;
+    max-width: 600px;
+    font-size: 1.6em;
+    font-weight:bolder;
+}
+
+.display-field
+{
+    text-align:justify;
+    display: block;
+    max-width:600px;
+    margin: 5px 0 0 10px;
+    font-size: 1.4em;
+}
+
+.display-startdate
+{
+    text-align:justify;
+    display: block;
+    max-width:600px;
+    margin: 5px 0 0 10px;
+    font-size: 1.2em;
+}
+
+.display-startplace
+{
+    text-align:justify;
+    display: block;
+    max-width:600px;
+    margin: 5px 0 0 10px;
+    font-size: 1.2em;
+}
+
+.display-charge
+{
+    text-align:justify;
+    display: block;
+    max-width:600px;
+    margin: 5px 0 0 10px;
+    font-size: 1.2em;
+}
+
+#searchform .label {
+	margin: 50px 1px 5px 78px;
+	width: 134px;
+	display: inline;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.8em;
+	border: none;
+	color:Red;
+	font-weight:bolder;
+	background: transparent;
+}
+#searchform .title
+{
+    margin: 5px 1px 5px 78px;
+	width: 134px;
+	display: inline;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.5em;
+	border: none;
+	font-weight:bolder;
+	background: transparent;
 }
 
 #rss {
@@ -188,7 +297,7 @@ h2 {
 	margin: 0;
 	padding: 8px 0 0 110px;
 	height: 35px;
-	background: url(./images/post-h.jpg) no-repeat;
+	background: url(images/post-h.jpg) no-repeat;
 }
 
 .post h2 a {
@@ -197,10 +306,10 @@ h2 {
 }
 
 .postmetadata {
-	margin: 0;
+	margin: 0 0 20px 10px;
 	padding: 0 0 0 100px;
 	color: #7e7e7e;
-	font-size: 1em;
+	font-size: 1.2em;
 }
 
 .entry {
@@ -225,7 +334,7 @@ h2 {
 .commentline {
 	text-align: right;
 	font-weight: bold;
-	font-size: 0.9em;
+	font-size: 1.2em;
 	padding: 20px 0 0 0;
 }
 
@@ -246,6 +355,26 @@ h2 {
 	padding: 0 20px 0 0;  
 }
 
+/**/
+/* forms */
+fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+    fieldset legend {
+        display: none;
+    }
+
+    fieldset ol {
+        padding: 0;
+        list-style: none;
+    }
+
+        fieldset ol li {
+            padding-bottom: 5px;
+        }
 
 /* PageNavi*/
 
@@ -410,13 +539,13 @@ h3#comments, #respond h3 {
 	width: 170px;
 	padding: 2px;
 	margin: 5px 5px 1px 0;
-	font: 0.9em 'Lucida Grande', Verdana, Arial, Sans-Serif;
+	font: 1.2em 'Lucida Grande', Verdana, Arial, Sans-Serif;
 }
 
 #commentform textarea {
 	width: 98%;
 	padding: 2px;
-	font: 0.9em 'Lucida Grande', Verdana, Arial, Sans-Serif;
+	font: 1.2em 'Lucida Grande', Verdana, Arial, Sans-Serif;
 }
 
 #commentform p {
@@ -451,13 +580,13 @@ h3#comments, #respond h3 {
 	padding: 5px 5px 10px 10px;
 	list-style: none;
 	font-weight: bold;
-	font: 0.9em 'Lucida Grande', Verdana, Arial, Sans-Serif;
+	font: 1.2em 'Lucida Grande', Verdana, Arial, Sans-Serif;
 }
 
 .commentlist li ul li { 
 	margin-right: -5px;
 	margin-left: 10px;
-	font-size: 1em;
+	font-size: 1.2em;
 }
 
 .commentlist p {
@@ -481,7 +610,7 @@ h3#comments, #respond h3 {
 .commentlist cite, .commentlist cite a {
 	font-weight: bold;
 	font-style: normal;
-	font-size: 1.1em;
+	font-size: 1.2em;
 }
 
 .children {
@@ -540,7 +669,7 @@ h3#comments, #respond h3 {
 	padding: 80px 80px 0 0;
 	text-align: right;
 	color: #000;
-	font-size: 1.1em;
+	font-size: 1.2em;
 }
 
 #footer a {

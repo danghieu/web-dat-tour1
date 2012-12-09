@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javabean.TourProgramBean;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -39,12 +38,11 @@ public class DeleteTourProgramServlet extends HttpServlet {
                 TourProgramBO tourprogramBO=new TourProgramBO();
                 boolean isDeleted=false;
                 isDeleted=tourprogramBO.deleteSpecifiedTourProgram(request.getParameter("tourprogramid"));
-                out.println(isDeleted);
                 if(isDeleted==true) {
-                response.sendRedirect("./jsp/IndexTourProgram.jsp");
+                response.sendRedirect("./jsp/ListTourProgram.jsp");
                 }
                 else {
-                response.sendRedirect("./jsp/RegisterFailed.jsp");
+                response.sendRedirect("./jsp/DeleteTourProgram.jsp?id="+request.getParameter("tourprogramid"));
             }      
                 
             

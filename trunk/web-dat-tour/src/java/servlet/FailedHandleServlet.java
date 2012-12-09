@@ -37,19 +37,19 @@ public class FailedHandleServlet extends HttpServlet {
                 String action = request.getParameter("action2");
                 out.print(action);
                 if (action.equals("Đăng nhập lại")) {               
-                    response.sendRedirect("./jsp/user/Login.jsp");
+                    response.sendRedirect("./jsp/Login.jsp");
                 }
                 else if(action.equals("Đăng ký lại"))
                 {
-                    response.sendRedirect("./jsp/user/Register.jsp");
+                    response.sendRedirect("./jsp/Register.jsp");
                 }
                 else if(action.equals("Đăng nhập"))
                 {
-                    response.sendRedirect("./jsp/user/Login.jsp");
+                    response.sendRedirect("./jsp/Login.jsp");
                 }
                 else if(action.equals("Quay về"))
                 {
-                    response.sendRedirect("./jsp/user/ChangePassword.jsp");
+                    response.sendRedirect("./jsp/ChangePassword.jsp");
                 }
             } catch (Exception ex) {
         out.println(ex.getMessage());
