@@ -60,6 +60,18 @@
         <servlet-name>BookingServlet</servlet-name>
         <servlet-class>servlet.BookingServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CreateAdsServlet</servlet-name>
+        <servlet-class>servlet.CreateAdsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteAdsServlet</servlet-name>
+        <servlet-class>servlet.DeleteAdsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditAdsServlet</servlet-name>
+        <servlet-class>servlet.EditAdsServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -111,6 +123,18 @@
     <servlet-mapping>
         <servlet-name>BookingServlet</servlet-name>
         <url-pattern>/BookingServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateAdsServlet</servlet-name>
+        <url-pattern>/CreateAdsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteAdsServlet</servlet-name>
+        <url-pattern>/DeleteAdsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditAdsServlet</servlet-name>
+        <url-pattern>/EditAdsServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

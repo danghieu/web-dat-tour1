@@ -70,7 +70,14 @@ h2 {
 	margin: 0 auto;
 	width: 1000px;
 }
-
+/*Ads */
+#ads {
+	max-width: 200px;
+	max-height: 400px;
+	margin: 0;
+	padding-left: 10px;
+        float: right;
+}
 
 /* Header */
 
@@ -125,10 +132,11 @@ h2 {
 }
 
 #searchform {
-	width: 292px;
-	height: 250px;
+        float:  right;
+	width: 250px;
+	height: 200px;
 	margin: 0;
-	/*background: url(./images/search.jpg) no-repeat;*/
+	/*background: url(./images/searchform.jpg) no-repeat;*/
 }
 #searchform input {
 	float: left;
@@ -158,6 +166,7 @@ h2 {
 #searchform .searchbutton{
 	margin: 5px 1px 5px 78px;
 }
+
 .main-content-tour
     {
         padding-top:50px;
@@ -197,24 +206,31 @@ h2 {
     
     /*display*/
 .display-label
-{
+{   text-align:justify;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
     display: block;
     max-width: 600px;
-    font-size: 1.6em;
+    font-size: 1.4em;
     font-weight:bolder;
 }
 
 .display-field
 {
     text-align:justify;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
     display: block;
     max-width:600px;
     margin: 5px 0 0 10px;
-    font-size: 1.4em;
+    font-size: 1.2em;
 }
 
 .display-startdate
 {
+    text-align:justify;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
     text-align:justify;
     display: block;
     max-width:600px;
@@ -225,6 +241,9 @@ h2 {
 .display-startplace
 {
     text-align:justify;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+    text-align:justify;
     display: block;
     max-width:600px;
     margin: 5px 0 0 10px;
@@ -233,6 +252,9 @@ h2 {
 
 .display-charge
 {
+    text-align:justify;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
     text-align:justify;
     display: block;
     max-width:600px;
@@ -293,7 +315,7 @@ h2 {
 
 .post h2 {
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 1.6em;
+	font-size: 1.2em;
 	margin: 0;
 	padding: 8px 0 0 110px;
 	height: 35px;
@@ -309,7 +331,7 @@ h2 {
 	margin: 0 0 20px 10px;
 	padding: 0 0 0 100px;
 	color: #7e7e7e;
-	font-size: 1.2em;
+	font-size: 1.0em;
 }
 
 .entry {
@@ -452,7 +474,7 @@ fieldset {
 }
 
 #sidebar ul li {
-	margin: 0 0 30px 0;
+	margin: 0 0 0px 0;
 	padding: 0;
 }
 

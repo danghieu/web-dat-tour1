@@ -76,4 +76,30 @@ public class TourBO {
         return listOfTours;
     }
     
+    public ArrayList list(String column) throws Exception {
+        TourMapper tourMapper=new TourMapper();
+        ArrayList listOfTours = null;
+        try {
+            listOfTours = tourMapper.list(column);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            tourMapper.con.close();
+        }
+        return listOfTours;
+    }
+    public int freeseats(String tour)throws Exception 
+    {
+        TourMapper tourMapper=new TourMapper();
+        int free=0;
+        try {
+            free=tourMapper.freeseats(tour);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            tourMapper.con.close();
+        }
+        return free;
+    }
+    
 }
