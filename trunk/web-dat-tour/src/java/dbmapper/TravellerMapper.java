@@ -81,8 +81,11 @@ public class TravellerMapper extends DBMapper{
         if (travellertemp == null) {
             return false;
         }
+        DateFormat formatter ; 
+         formatter = new SimpleDateFormat("dd-MM-yyyy");  
+         String start = formatter.format(traveller.getBirthday());
         sqlStr = "UPDATE [traveller] set name=N'"+traveller.getName()+
-                "', birthday='"+traveller.getBirthday() + "', gender='"+traveller.getGender() +
+                "', birthday='"+start + "', gender='"+traveller.getGender() +
                  "', address=N'"+traveller.getAddress() +"', singlroom='"+traveller.getSingleRoom() +
                  "', clienttype=N'"+traveller.getClientType() +" WHERE travellerid='"+
                 traveller.getTravellerId()+"'";

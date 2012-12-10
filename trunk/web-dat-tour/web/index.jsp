@@ -50,9 +50,7 @@
 		<div id="navigation">
 		    <ul>
 				<li style="list-style: none;"><a href="./">Trang chủ</a></li>
-                                <% if(user!=null && user.getRoleId().equals("1")) { %>
-                                <li style="list-style: none;"><a href="jsp/ControlPanel.jsp">Trang quản lý</a></li>
-                                <% } %>
+                                
                                 <% if(user!=null) {%>             
                                 <li style="list-style: none;"><a href="jsp/ChangePassword.jsp">Đổi mật khẩu</a></li>
                                 <li style="list-style: none;"><a href="jsp/../LogoutServlet">Đăng xuất</a></li>
@@ -74,36 +72,36 @@
 
 		<!-- sidebar start -->
 		<div id="sidebar">
-			<div id="searchform">
-                            <!--<?php include(TEMPLATEPATH . '/searchform.php'); ?>-->
+			
+                        <% if(user!=null && user.getRoleId().equals("1")) { %>
+                        <%@include file="jsp/ControlPanel.jsp" %>
+                        <% } else { %>
+                        <div id="searchform">
+                            <%@include file="jsp/Search.jsp" %> 
 			</div>
-			<div id="rss"><a href="./"><img src="<%=request.getContextPath()%>/css/images/spacer.gif" alt="RSS" height="40px" width="180px" /></a></div>
+                        <%@include file="jsp/Ads.jsp" %>
+                        <% } %>
+                        <!--<div id="rss"><a href="./"><img src="<%//=request.getContextPath()%>/css/images/spacer.gif" alt="RSS" height="40px" width="180px" /></a></div>
 			<ul>
-				<!--<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Sidebar1') ) : ?>-->
 				<li>
 					<h2>Categories</h2>
 					<ul>
-                                            <!--
-						<?php wp_list_cats('sort_column=name&optioncount=1&hierarchical=0'); ?> -->
+                                            
 					</ul>
 				</li>
 				<li>
 					<h2>Archives</h2>
 					<ul>
-						<!--<?php wp_get_archives('type=monthly'); ?>-->
 					</ul>
 				</li>
 				<li>
 					<h2>Recent Posts</h2>
 					<ul>
-						<!--<?php get_archives('postbypost', 5); ?>-->
 					</ul>
 				</li>
 				<li>
-					<!--<?php get_recent_comments(array('number' => 5)); ?>-->
 				</li>
-				<!--<?php endif; ?>-->
-			</ul>
+			</ul>-->
 			<div id="sidebar-bottom"></div>
 		</div>
 <!-- sidebar end -->
@@ -124,9 +122,21 @@
 
 					<div class="post">
 						<h2><a href="" title=""><%=tour.getTourProgram().getTourProgramName() %></a></h2>
-						<p class="postmetadata">Ngày khởi hành: <%=formatter.format(tour.getStartdate())  %> | Điểm đến: <%=tour.getEndplace()  %> | Giá tour: <%=tour.getBasiccharge()  %> VNĐ<a href="<%="jsp/Booking.jsp?id="+tour.getTourId()%>"><img src="images/bt_booking_s.png" /></a></p>
-						<div class="entry">
-                                                    <% out.print("<img src='"+tour.getTourProgram().getImage()+"' width='400px'/>"); %>
+						<p class="postmetadata">
+                                                    Ngày khởi hành: <%=formatter.format(tour.getStartdate())  %> | Điểm đến: <%=tour.getEndplace()  %> | Giá tour: <%=tour.getBasiccharge()  %> VNĐ
+                                                </p>
+                                                <p class="postmetadata">
+                                                    <% TourBO tourBO=new TourBO();
+                                                    if(tourBO.freeseats(tour.getTourId())>0) {%>
+                                                    Số chỗ còn nhận:<font color="red"><%=tourBO.freeseats(tour.getTourId())%></font>
+                                                    <a href="<%="Booking.jsp?id="+tour.getTourId()%>"><img src="images/bt_booking_s.png" /></a>
+                                                    <%} else {%>
+                                                    <font color="red">Hết chỗ</font>
+                                                    <%}%>
+                                                </p>
+						
+                                                <div class="entry">
+                                                    <img src="<%=tour.getTourProgram().getImage().substring(0,4).equals("http")?tour.getTourProgram().getImage():request.getContextPath()+tour.getTourProgram().getImage() %>" style="max-width:400px"/>
 							<div class="endline">
                                                             <a href="<%="jsp/TourDetail.jsp?id="+tour.getTourId()%>">Chi tiết ... </a>
                                                         </div>

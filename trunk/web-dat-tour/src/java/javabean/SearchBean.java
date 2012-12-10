@@ -14,6 +14,7 @@ public class SearchBean {
     private String TourName;
     private Date StartDate;
     private String StartPlace;
+    private String EndPlace;
     private long ChargeFrom;
     private long ChargeTo;
 
@@ -86,5 +87,19 @@ public class SearchBean {
      */
     public void setChargeTo(long ChargeTo) {
         this.ChargeTo = ChargeTo;
+    }
+
+    /**
+     * @return the EndPlace
+     */
+    public String getEndPlace() {
+        return EndPlace;
+    }
+
+    /**
+     * @param EndPlace the EndPlace to set
+     */
+    public void setEndPlace(String EndPlace) {
+        this.EndPlace = EndPlace;
     }
 }

@@ -62,9 +62,7 @@
 		<div id="navigation">
 		    <ul>
 				<li style="list-style: none;"><a href="../">Trang chủ</a></li>
-                                <% if(user!=null&&user.getRoleId().equals("1")) { %>
-                                <li style="list-style: none;"><a href="ControlPanel.jsp">Trang quản lý</a></li>
-                                <% } %>
+                                
                                 <% if(user!=null) {%>             
                                 <li style="list-style: none;"><a href="ChangePassword.jsp">Đổi mật khẩu</a></li>
                                 <li style="list-style: none;"><a href="../LogoutServlet" >Đăng xuất</a></li>
@@ -86,36 +84,14 @@
 
 		<!-- sidebar start -->
 		<div id="sidebar">
-			<div id="searchform">
-                            <!--<?php include(TEMPLATEPATH . '/searchform.php'); ?>-->
+			<% if(user!=null && user.getRoleId().equals("1")) { %>
+                        <%@include file="ControlPanel.jsp" %>
+                        <% } else { %>
+                        <div id="searchform">
+                            <%@include file="Search.jsp" %> 
 			</div>
-			<div id="rss"><a href="./"><img src="<%=request.getContextPath()%>/css/images/spacer.gif" alt="RSS" height="40px" width="180px" /></a></div>
-			<ul>
-				<!--<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Sidebar1') ) : ?>-->
-				<li>
-					<h2>Categories</h2>
-					<ul>
-                                            <!--
-						<?php wp_list_cats('sort_column=name&optioncount=1&hierarchical=0'); ?> -->
-					</ul>
-				</li>
-				<li>
-					<h2>Archives</h2>
-					<ul>
-						<!--<?php wp_get_archives('type=monthly'); ?>-->
-					</ul>
-				</li>
-				<li>
-					<h2>Recent Posts</h2>
-					<ul>
-						<!--<?php get_archives('postbypost', 5); ?>-->
-					</ul>
-				</li>
-				<li>
-					<!--<?php get_recent_comments(array('number' => 5)); ?>-->
-				</li>
-				<!--<?php endif; ?>-->
-			</ul>
+                        <%@include file="Ads.jsp" %>
+                        <% } %>
 			<div id="sidebar-bottom"></div>
 		</div>
 <!-- sidebar end -->

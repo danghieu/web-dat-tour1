@@ -114,7 +114,10 @@ public class TourMapper extends DBMapper{
         if (tourBean == null || tourprogramBean ==null) {
             return false;
         }
-        sqlStr = "UPDATE [tour] set tourprogramid='"+tour.getTourProgram().getTourProgramId()+"', startdate='"+tour.getStartdate()+
+        DateFormat formatter ; 
+         formatter = new SimpleDateFormat("dd-MM-yyyy");  
+         String start = formatter.format(tour.getStartdate());
+        sqlStr = "UPDATE [tour] set tourprogramid='"+tour.getTourProgram().getTourProgramId()+"', startdate='"+start+
                 "', startplace=N'"+tour.getStartplace() + "', endplace=N'"+tour.getEndplace() +
                  "', maxpeople='"+tour.getMaxpeople() +"', basiccharge="+tour.getBasiccharge() +
                 ", surcharge="+tour.getSurcharge() + ", airportcharge="+tour.getAirportcharge() +
@@ -169,10 +172,13 @@ public class TourMapper extends DBMapper{
     public ArrayList<TourBean> searchTour(SearchBean toursearch) throws Exception {
         ArrayList listOfTours = new ArrayList<TourBean>();
         TourBean tour = null;
+        DateFormat formatter ; 
+         formatter = new SimpleDateFormat("dd/MM/yyyy");  
+         String start = formatter.format(toursearch.getStartDate());
         Statement st = con.createStatement();
         String sqlStr="SELECT * FROM Tour WHERE "
-                + " tourprogramname='%"+toursearch.getTourName()+"%' and startdate="+toursearch.getStartDate()+"' and startplace=N'"
-                + toursearch.getStartPlace()+"' and basiccharge>="+toursearch.getChargeFrom()+" and basiccharge<="+toursearch.getChargeTo();
+                +"startdate='"+start+"' and startplace like N'"
+                + toursearch.getStartPlace()+"' and endplace like N'"+ toursearch.getEndPlace()+"' and basiccharge>="+toursearch.getChargeFrom()+" and basiccharge<"+toursearch.getChargeTo();
         ResultSet rs;
         rs = st.executeQuery(sqlStr.toString());
         while (rs != null && rs.next()) {
@@ -194,5 +200,33 @@ public class TourMapper extends DBMapper{
             listOfTours.add(tour);
         }
         return listOfTours;
+    }
+    
+    public ArrayList list(String column) throws Exception {
+        ArrayList listOfTourPrograms = new ArrayList();
+        Statement st = con.createStatement();
+        String sqlStr="SELECT DISTINCT "+column+" FROM Tour";
+        ResultSet rs;
+        rs = st.executeQuery(sqlStr.toString());
+        while (rs != null && rs.next()) {
+            String a= rs.getString(column);
+            listOfTourPrograms.add(a);
+        }
+        
+        return listOfTourPrograms;
+    }
+    
+    public int freeseats(String tour)throws Exception 
+    {
+        Statement st = con.createStatement();
+        String sqlStr="SELECT count(tourid) FROM TourContact Where tourid='"+tour+"'";
+        ResultSet rs;
+        rs = st.executeQuery(sqlStr.toString());
+        int freeseats=0;
+        TourBean tourBean=isExist(tour);
+        if (rs != null && rs.next()) {
+            freeseats= tourBean.getMaxpeople()- Integer.parseInt(rs.getString(1));
+        }
+        return freeseats;
     }
 }
