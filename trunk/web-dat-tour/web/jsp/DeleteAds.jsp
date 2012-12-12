@@ -10,7 +10,6 @@
 <%@page import="javabean.UserBean"%>
 <%
     UserBean user = (UserBean) session.getAttribute("userbean");
-    AdsBean ads=(AdsBean) session.getAttribute("ads");
     if(user==null || !user.getRoleId().equals("1"))
     {
         response.sendRedirect("./AccessDenied.jsp");
@@ -20,7 +19,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Thêm quảng cáo</title>
+<title>Xóa quảng cáo</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css" type="text/css" media="screen" />
 
 <script
@@ -98,19 +97,21 @@
                                     <% AdsBean ads_bean=new AdsBean();
                                         AdsBO ads_BO= new AdsBO();
                                         ads_bean=ads_BO.isExist(request.getParameter("id"));
-                                        if(ads_bean!=null) out.print("<img src=ads_bean.getImage() style='max-width:200px;max-heigh:400px'/>");
+                                        if(ads_bean!=null) out.print("<img src="+ads_bean.getImage()+" style='max-width:200px;max-heigh:400px'/>");
                                     %>
-                                    <tr><input type="hidden" name="id" value="<% if(ads_bean!=null) out.print(ads_bean.getAdsID()); %>"></input>
-                                        <td align="right"><b>Link quảng cáo:   </b></td>
-                                        <td><input type="text" name="Link" value="<% if(ads!=null) out.print(ads.getLink()); if(ads_bean!=null) out.print(ads_bean.getLink()); %>" style="width: 250px" readonly="true"/></td>
+                                    <tr>
+                                        <td align="right">
+                                            <input type="hidden" name="id" value="<% if(ads_bean!=null) out.print(ads_bean.getAdsID()); %>"></input>
+                                            <b>Link quảng cáo:   </b></td>
+                                        <td><input type="text" name="Link" value="<% if(ads_bean!=null) out.print(ads_bean.getLink()); %>" style="width: 250px" readonly="true"/></td>
                                     </tr>
                                     <tr>
                                         <td align="right"><b>Link hình ảnh(kích thước tối đa 200x400px):   </b></td>
-                                        <td><input type="text" name="Image" value="<% if(ads!=null) out.print(ads.getImage()); if(ads_bean!=null) out.print(ads_bean.getImage()); %>"style="width: 250px" readonly="true"/></td>
+                                        <td><input type="text" name="Image" value="<%if(ads_bean!=null) out.print(ads_bean.getImage()); %>"style="width: 250px" readonly="true"/></td>
                                     </tr>
                                     <tr>
                                         <td align="right"><b>Mô tả:   </b></td>
-                                        <td><textarea name="Caption" rows="4" cols="30" readonly="true"><%=(ads!=null)?ads.getImage():"" %></textarea></td>
+                                        <td><textarea name="Caption" rows="4" cols="30" readonly="true"><%=(ads_bean!=null)?ads_bean.getCaption():"" %></textarea></td>
                                     </tr>                                   
                                 </tbody>
                             </table>

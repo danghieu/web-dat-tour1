@@ -45,7 +45,7 @@ public class EditAdsServlet extends HttpServlet {
             Ads.setCaption(request.getParameter("Caption"));
             AdsBO adsBO=new AdsBO();
             boolean isCreated=false;
-            isCreated=adsBO.createNewAds(Ads);
+            isCreated=adsBO.updateSpecifiedAds(Ads);
             out.println(isCreated);
             if(isCreated==true) {
             response.sendRedirect("./jsp/ListAds.jsp");

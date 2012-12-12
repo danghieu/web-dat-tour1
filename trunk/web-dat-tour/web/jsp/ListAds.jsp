@@ -94,8 +94,8 @@
 
 <!-- content start -->
 		<div id="content">
-                    <% AdsBO ads1BO=new AdsBO();
-                        ArrayList<AdsBean> listAds1=adsBO.listAllAds(); %>
+                    <% AdsBO adsBO_1=new AdsBO();
+                        ArrayList<AdsBean> listAds1=adsBO_1.listAllAds(); %>
                         <div class="display-label">Danh sách quảng cáo</div>
                         <a href="CreateAds.jsp"> Tạo quảng cáo mới </a>
                     <table border="1px" width="600px" >

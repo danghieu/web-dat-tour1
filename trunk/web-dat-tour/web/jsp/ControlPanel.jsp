@@ -15,6 +15,6 @@
         <a href="<%=request.getContextPath()%>/jsp/ListTour.jsp" ><h2>Quản lý tour</h2></a>
     </li>
     <li>
-        <a href="<%=request.getContextPath()%>/jsp/ListAds.jsp.jsp" ><h2>Quản lý quảng cáo</h2></a>
+        <a href="<%=request.getContextPath()%>/jsp/ListAds.jsp" ><h2>Quản lý quảng cáo</h2></a>
     </li>
 </ul>
