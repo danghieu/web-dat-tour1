@@ -32,7 +32,73 @@
 <!--[if lte IE 6]><style>
 .wp-pagenavi a, .wp-pagenavi span.pages, .wp-pagenavi span.current, .wp-pagenavi span.extend {padding: 2px 0; margin: 1px;}
 </style><![endif]-->
+<script
+   type='text/javascript'>
+function validateForm()
+{
+    if(document.formdangky.username.value=="")
+    {
+      alert("Username không được để trống!");
+      document.formdangky.username.style.backgroundColor='red';
+      document.formdangky.username.focus();
+      document.formdangkygetElementById("iduser");
+      return false;
+    }
+    else  if(document.formdangky.password.value=="")
+    {
+      alert("Mật khẩu không được để trống!");
+      document.formdangky.password.style.backgroundColor='red';
+      document.formdangky.password.focus();
+      return false;
+    }
+    else if(document.formdangky.password.length < 6 )
+    {
+      alert("Mật khẩu phải nhiều hơn 6 ký tự!");
+      document.formdangky.password.style.backgroundColor='red';
+      document.formdangky.password.focus();
+      return false;
+    }
+    else if(document.formdangky.retypepassword.value=="")
+    {
+      alert("Xác nhận mật khẩu không được để trống!");
+      document.formdangky.retypepassword.style.backgroundColor='red';
+      document.formdangky.retypepassword.focus();
+      return false;
+    } else if(document.formdangky.password.value==document.formdangky.retypepassword.value)
+    {
+      alert("Mật khẩu xác nhận không khớp!");
+      document.formdangky.password.style.backgroundColor='red';
+      document.formdangky.retypepassword.style.backgroundColor='red';
+      document.formdangky.password.focus();
+      return false;
+    }else if(document.formdangky.password.value=="")
+    {
+        alert("Email không được để rỗng!");
+                document.formdangky.email.style.backgroundColor='red';
+                document.formdangky.email.focus();
+        
+        
+      return false;
+    }
+    else if(document.formdangky.password.value!="")
+        {
+            if(kq2==false)
+            {
+                dangmail= /^[\w.-]+@[\w.-]+\.[A-Za-z]{2,4}$/ //Tạo biểu thức quy tắc (tức là định dạng 1 mail nó như thế nào).
 
+                kq2=dangmail.test(email); //Kiểm tra mail mà người dùng nhập vào.
+                alert("Email không đúng định dạng!");
+                document.formdangky.email.style.backgroundColor='red';
+                document.formdangky.email.focus();
+                return false;
+            }
+      
+        }
+        return true;
+}
+</script>
+       
+</script>
 
 <link href="<%=request.getContextPath()%>/css/quotable.css" type="text/css" rel="stylesheet" />
 </head>
@@ -87,7 +153,7 @@
 
 <!-- content start -->
 		<div id="content">
-                    <form action="../RegisterServlet" method="POST" >
+                    <form  action="../RegisterServlet" method="POST" name="formdangky" id="formdangky" >
                     <table>
                         <tr>
                             <td><center><div style="color:red;size:15px" >ĐĂNG KÝ THÀNH VIÊN</div></center></td>
@@ -98,15 +164,20 @@
                                 <tbody>
                                     <tr>
                                         <td align="right"><b>Người dùng:   </b></td>
-                                        <td><input type="text" name="username" value="" style="width: 250px"/></td>
+                                        <td><input type="text" name="username" value="" style="width: 250px"/>
+                                            <label><span class="style23" style="color: #ff0000" id="iduser"></span></label></td>
                                     </tr>
                                     <tr>
                                         <td align="right"><b>Mật khẩu:   </b></td>
-                                        <td><input type="password" name="password" value="" style="width: 250px"/></td>
+                                        <td><input type="password" name="password" value="" style="width: 250px"/>
+                                        <label><span class="style23" style="color: #ff0000" id="idmk"></span></label></td>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td align="right"><b>Nhập lại mật khẩu:   </b></td>
-                                        <td><input type="password" name="retypepassword" value="" style="width: 250px"/></td>
+                                        <td><input type="password" name="retypepassword" value="" style="width: 250px"/>
+                                        <label><span class="style23" style="color: #ff0000" id="idnlmk"></span></label></td>
+                                        </td>
                                     </tr>  
                                     <tr>
                                         <td align="right"><b>Họ:   </b></td>
@@ -144,11 +215,9 @@
                                     </tr>
                                     <tr>
                                         <td align="right"><b>Email:   </b></td>
-                                        <td><input type="text" name="email" value="" style="width: 250px"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td align="right"><b>Nhập lại email:   </b></td>
-                                        <td><input type="text" name="nlemail" value="" style="width: 250px"/></td>
+                                        <td><input type="text" name="email" value="" style="width: 250px"/>
+                                        <label><span class="style23" style="color: #ff0000" id="idemail"></span></label>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td align="right"><b>Điạ chỉ:   </b></td>
@@ -163,7 +232,7 @@
                         </td></tr>
                           
                         <tr>
-                            <td> <center><input type="submit" value="Đăng ký" name="Resgister" /></center></td>
+                            <td> <center><input type="submit" value="Đăng ký" name="Resgister"  onclick="return validateForm()"/></center></td>
                         </tr>
                     </table>
                 </form>
